@@ -1,3 +1,5 @@
+/*Code adapted from a previous assignment done by me (Matthew Sparrow), link to site here https://crudhw-84e30.firebaseapp.com/crud.html*/
+
 //Initial page elements
 var movieList = document.getElementById("movieList");
 var listEntry = document.getElementById("listEntry");
