@@ -42,7 +42,8 @@ var simulate = () =>{
   alert.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/webhw2-d13bb.appspot.com/o/alert.png?alt=media&token=48030043-d029-4513-8128-d6cb583539d3");
   alert.setAttribute("alt", "Error Retrieving Alert Image");
   },5000);
-  
+  var audio = new Audio('Alarm.wav');
+  audio.play();
   simarea.appendChild(alert);
   
   
