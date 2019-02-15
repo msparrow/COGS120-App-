@@ -1,1 +1,22 @@
-
+{
+  "location-1": {
+  "name": "Giesel library",
+  "lng": 10,
+  "lat": 0,
+},
+"location-2": {
+  "name": "PC",
+  "lng": 100,
+  "lat": 0,
+},
+"location-3": {
+"name": "lawn", 
+  "lng": 500,
+  "lat": 0,
+}
+  "location-4": {
+"name": "out of bounds", 
+  "lng": 1000,
+  "lat": 0,
+}
+}
