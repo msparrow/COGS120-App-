@@ -3,7 +3,12 @@ var go = document.createElement("button");
 var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
-var datajson = require("./data.json"); 
+var datajson; 
+$.getJSON("data.json", function(json)) {
+  console.log("json recieved");
+  datajson = json;
+}
+
 
 function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
