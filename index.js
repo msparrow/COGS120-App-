@@ -1,4 +1,4 @@
-$(document).ready(function(){
+var $ = window.$
 
 var sim = document.getElementById("sim");
 var go = document.createElement("button");
@@ -78,4 +78,3 @@ slider.setAttribute("onchange","updateTextInput(this.value);");
 }
 
 sim.addEventListener("click", simulate)
-});
