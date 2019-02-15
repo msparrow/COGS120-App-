@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 var sim = document.getElementById("sim");
 var go = document.createElement("button");
 var simarea = document.getElementById("simarea");
@@ -76,3 +78,4 @@ slider.setAttribute("onchange","updateTextInput(this.value);");
 }
 
 sim.addEventListener("click", simulate)
+});
