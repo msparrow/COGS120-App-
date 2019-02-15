@@ -23,12 +23,12 @@ var simulate = () =>{
  // slider.setAttribute("min", "0");
  // slider.setAttribute("min", "0");
  // slider.setAttribute("value", "0")
-  slider.setAttribute("min", list["value-1"]);
-  slider.setAttribute("max", list["value-2"]);
-  slider.setAttribute("step",list["value-3"]);
-  slider.setAttribute("min", list["value-4"]);
-  slider.setAttribute("min", list["value-5"]);
-  slider.setAttribute("value", list["value-6"])
+  slider.setAttribute("min", list.value-1);
+  slider.setAttribute("max", list.value-2);
+  slider.setAttribute("step",list.value-3);
+  slider.setAttribute("min", list.value-4);
+  slider.setAttribute("min", list.value-5);
+  slider.setAttribute("value",list.value-6)
 slider.setAttribute("onchange","updateTextInput(this.value);");
   simarea.appendChild(slider);
   var simtext = document.createElement("input");
