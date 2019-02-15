@@ -1,4 +1,4 @@
-import list from './data.json'
+import list from '/data.json'
 var $ = window.$
 
 var sim = document.getElementById("sim");
