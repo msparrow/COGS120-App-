@@ -1,4 +1,4 @@
-/*Code adapted from a previous assignment done by me (Matthew Sparrow), link to site here https://crudhw-84e30.firebaseapp.com/crud.html*/
+/*Functionality adapted from some code I (Matthew Sparrow) wrote last fall, link to site here https://crudhw-84e30.firebaseapp.com/crud.html*/
 
 //Initial page elements
 var movieList = document.getElementById("movieList");
