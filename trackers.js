@@ -19,9 +19,7 @@ var dCancel = document.getElementById("dCancel");
 var dOk = document.getElementById("dOk");
 var movieArr; 
 
-/*var movieArr = ["Star Wars (1977) - Rated: PG ",
-                 "The Empire Strikes Back (1980) - Rated: PG ",
-                 "The Revenge of the Jedi (1983) - Rated: PG \n"];*/
+var movieArr = [];
 if(JSON.parse(localStorage.getItem("storedArr")) != null){				 
 movieArr = JSON.parse(localStorage.getItem("storedArr"));
 }
