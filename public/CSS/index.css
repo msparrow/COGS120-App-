@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Helvetica Neue';
 }
 
 hr {
@@ -15,18 +15,11 @@ hr {
   border-color: #F05F40;
 }
 
-hr.light {
-  border-color: #fff;
-}
-
-a {
-  color: #F05F40;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-a:hover {
-  color: #f05f40;
+.box {
+  margin-top:20px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 h1,
@@ -35,23 +28,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Open Sans';
 }
 
-.bg-primary {
-  background-color: #F05F40 !important;
-}
-
-.bg-dark {
-  background-color: #212529 !important;
-}
-
-.text-faded {
-  color: rgba(255, 255, 255, 0.7);
-}
 
 section {
-  padding: 8rem 0;
+  padding: 9rem 0;
 }
 
 .section-heading {
