@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tracker CRUD</title>
+  </head>
+  
+  <body onload="init()">
+    <h1>List of Trackers</h1>
+    
+    <ul id="movieList">
+    </ul>
+  
+  <form>
+    <input type="button" id="addMovie" value="Add Tracker"></input>
+  </form>
+  
+  <!--The add movie window dialog-->
+  <dialog id="mDialog" style="text-align:left;">
+    <form>
+      Tracker Name:<input type="text" id="mTitle"></input><br />
+      Tracker No.:<input type="text" id="mYear"></input><br />
+     Range (1-10mi): 
+     
+  <input type="range" name="rangeInput" min="0" max="10" step="1" list ="steplist" id="mRating" onchange="updateTextInput(this.value);">
+<input type="text" id="textInput" value="">
+<datalist id="steplist">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+  </datalist>
+  <br />
+      <input type="button" id="mCancel" value="Cancel"></input>
+      <input type="button" id="mSave" value="Save"></input>
+    </form>
+  </dialog>
+
+  <dialog id="dDialog" style="text-align:center;">
+    <form>
+      <label>Delete tracker?</label><br />
+      <input type="button" id="dCancel" value="Cancel"></input>
+    <input type="button" id="dOk" value="Ok"></input> 
+    </form>
+  </dialog>
+  
+  <!--The cancel confirm dialog-->
+  
+  <script type = "text/javascript" src="./trackers.js"></script>
+  </body>
+</>
