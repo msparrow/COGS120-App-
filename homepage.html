@@ -28,7 +28,13 @@
   <link href='//fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- //web-fonts -->
-
+<style>
+/* Set the size of the div element that contains the map */
+#map {
+  height: 600px;  /* The height is 400 pixels */
+  width: 400px;  /* The width is the width of the web page */
+ }
+	</style> 
 
     </head>
   
@@ -71,8 +77,13 @@
     <button id="sim">See where your tracker is at!</button>
     <div id="simarea"></div>
     <script type="text/javascript" src="./index.js"></script>
+  <script type="text/javascript" src="./index.js"></script>
+    <!-- Replace the value of the key parameter with your own API key. -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ldu2hMxOokMY2yP59Ser5FoJa_kWkto&callback=initMap">
+</script>
+    </body>
    <br>
-      <img src = "https://zdnet2.cbsistatic.com/hub/i/2019/01/16/41a395b2-f69a-4787-84ac-398d181f2aba/2a07e53bda9fda58cc6aaf1572ab248a/paris-duckduckgo.png" alt = "map" width="500" height="300"> </img><br />
-
+      
     </body>
 </html>
