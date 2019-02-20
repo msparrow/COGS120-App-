@@ -32,10 +32,9 @@
 /* Set the size of the div element that contains the map */
 #map {
   height: 600px;  /* The height is 400 pixels */
-  width: 400px;  /* The width is the width of the web page */
- margin-left: 50px;
+  width: 300px;  /* The width is the width of the web page */
+ margin-left: auto;
   margin-right: auto;
-
   display:inline-block;
   text-align: center;
  }
@@ -48,23 +47,21 @@
 <body>
     {{>navbar}}
    <hr>
-   </div class="container">
-   <div class="container"> 
-    <button class ="btn-group" style = "background-color: #e7e7e7;" style = "display: inline-block";
-    position: style = "color: black"; style = "margin-right: 10px"; text-align = "center" id="sim">See where your tracker is at!</button>
+   <div class="content">
+   <center>  
+     <button class ="btn-group" style = "background-color: #e7e7e7;" style = "display: inline-block";
+    position: style = "color: black"; style = "margin-right: 10px"; text-align = "center" id="sim">See where your trackers are at!</button>
+    </center>
     <div class="container" id="simarea"></div>
     <hr>
     <script src="/js/index.js"></script>
     <!--   <script type="text/javascript" src="/js/index.js"></script>
 Replace the value of the key parameter with your own API key. -->
-       <div class = class="container" id="map"></div>
-
+     <div class="map" id="map"></div>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ldu2hMxOokMY2yP59Ser5FoJa_kWkto&callback=initMap">
+</container>
 </script>
-    </body>
-   <br>
       </div>
-
     </body>
 </html>

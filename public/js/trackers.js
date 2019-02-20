@@ -282,15 +282,15 @@ var updateList = () =>{
   
 }
   
-function parseForm(title, year, rating){
+function parseForm(name, number, range){
   
   var retChild = "";
   
-  retChild += title;
-  retChild += " (";
-  retChild += year;
+  retChild += name;
+  retChild += " (#";
+  retChild += number;
   retChild += ") - Range: ";
-  retChild += rating;
+  retChild += range;
   retChild += " miles"
   return retChild;
 }

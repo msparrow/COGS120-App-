@@ -32,9 +32,12 @@ h1,h2,h3,h4,h5,h6{
     top: 64px;
     overflow: hidden;
 }
+
 .content {
 	max-width: 300px;
-  margin: auto;
+	margin: auto;
+	margin-left: auto;
+	padding-left: auto;
 }
 .frame-border{
     width: 350px;
