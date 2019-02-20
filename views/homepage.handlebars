@@ -40,9 +40,6 @@
   text-align: center;
  }
 
- .container{
-  position: relative;
- }
 
 	</style> 
 
@@ -51,16 +48,16 @@
 <body>
     {{>navbar}}
    <hr>
-   </div>
-   <div class="container">
+   </div class="container">
+   <div class="container"> 
     <button class ="btn-group" style = "background-color: #e7e7e7;" style = "display: inline-block";
     position: style = "color: black"; style = "margin-right: 10px"; text-align = "center" id="sim">See where your tracker is at!</button>
-    <div id="simarea"></div>
+    <div class="container" id="simarea"></div>
     <hr>
     <script src="/js/index.js"></script>
     <!--   <script type="text/javascript" src="/js/index.js"></script>
 Replace the value of the key parameter with your own API key. -->
-       <div class = "center" id="map"></div>
+       <div class = class="container" id="map"></div>
 
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ldu2hMxOokMY2yP59Ser5FoJa_kWkto&callback=initMap">
