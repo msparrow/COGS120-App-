@@ -3,12 +3,43 @@
   <head>
     <title>Tracker</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Home page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/index.css" rel="stylesheet">
+ <html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<meta charset utf="8">
+<!--font-awsome-css-->
+     <link rel="stylesheet" href="/css/font-awesome.min.css"> 
+<!--bootstrap-->
+  <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<!--custom css-->
+  <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+<!--component-css-->
+   <script src="/js/jquery-2.1.4.min.js"></script>
+<!--script-->
+  <script src="/js/modernizr.custom.js"></script>
+    <script src="/js/bigSlide.js"></script>
+           <script>
+        $(document).ready(function() {
+        $('.menu-link').bigSlide();
+        });
+     </script>
+<!-- web-fonts -->  
+  <link href='//fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- //web-fonts -->
   </head>
   
   <body onload="init()">
-    <h1>List of Trackers</h1>
+        {{>navbar}}
+
+    <h4 style = "text-align:center">your trackers</h4>
+    <h6 style = "text-align:center">//</h6>
+    <h6 style = "text-align:center">turn on, delete, edit, or turn on a new tracker</h6>
     
-    <ul id="trackerList">
+    <ul id="movieList">
     </ul>
   
   <form>
@@ -18,9 +49,10 @@
   <!--The add movie window dialog-->
   <dialog id="mDialog" style="text-align:left;">
     <form>
-      Tracker Name:<input type="text" id="mTitle"></input><br />
-      Tracker No.:<input type="text" id="mYear"></input><br />
-     Range (1-10mi): 
+      <h4 style = "text-align:center">Tracker Info</h6>
+      Name:<input type="text" id="mTitle"></input><br />
+      Device Number:<input type="text" id="mYear"></input><br />
+      Range (1-10mi): 
      
   <input type="range" name="rangeInput" min="0" max="10" step="1" list ="steplist" id="mRating" onchange="updateTextInput(this.value);">
 <input type="text" id="textInput" value="">
