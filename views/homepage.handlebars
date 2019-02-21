@@ -41,10 +41,20 @@
 
 
 	</style> 
-
+{{> facebook}}
+	<script src="/js/facebook.js"></script>
     </head>
   
 <body>
+<div class="container">
+		<!-- h1 through h6 are headers. The higher the number, the smaller the header -->
+		<!-- p means paragraph -->
+		<div class="jumbotron">
+			<p class="facebookLogin">Please login through Facebook
+			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+			</fb:login-button>
+			</p>
+		</div>
     {{>navbar}}
    <hr>
    <div class="content">
