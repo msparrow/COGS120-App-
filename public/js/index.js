@@ -19,38 +19,39 @@ var wait = () =>{
 
 var simulate = () =>{
   //simarea.removeChild(slider);
-  slider.setAttribute("type", "range");
-  slider.setAttribute("min", "0");
-  slider.setAttribute("max", "10");
-  slider.setAttribute("step", "1");
-  slider.setAttribute("min", "0");
-  slider.setAttribute("min", "0");
-  slider.setAttribute("value", "0")
-  slider.setAttribute("onchange","updateTextInput(this.value);");
-  simarea.appendChild(slider);
   var simtext = document.createElement("input");
   simtext.setAttribute("type", "text");
   simtext.setAttribute("id", "textInput");
   simarea.appendChild(simtext);
   
   var i = 0;
-  setInterval(function(){
-    document.querySelector('input[type=range]').value = i++;
-  }, 1000);
+  
+  var range = 0;
+          
+  $.get("/trackerData",
+        (serverData) =>{
+            console.log("server data");
+            console.log(serverData);
+            range = serverData[0].range;        
+  })
+  
+  if(range == 0 || range > 50){
+          range = 8;
+  }
   
   setInterval(function(){
-    document.querySelector('input[type=text]').value = i++ + " miles away";
+    document.querySelector('input[type=text]').value = "Tracker moving...  ("+ i++ + "mi)";
   }, 1000);
   
   setInterval(function(){
   alert.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/webhw2-d13bb.appspot.com/o/alert.png?alt=media&token=48030043-d029-4513-8128-d6cb583539d3");
   alert.setAttribute("alt", "Error Retrieving Alert Image");
-  },5000);
+  },(range*1000));
   
   setInterval(function(){
   var audio = new Audio('/audio/alarm.wav');
   audio.play();
-    },5000);
+    },(range*1000));
   
   // Initialize and add the map
 
