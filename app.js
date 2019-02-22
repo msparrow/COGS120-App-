@@ -24,6 +24,7 @@ app.engine('.handlebars', expressHbs({
 var login = require ("./routes/login");
 var homepage = require("./routes/homepage")
 var trackers = require ("./routes/trackers")
+//var postdata = require("./routes/trackers")
 var faq = require("./routes/faq")
 var register = require ("./routes/register")
 var edit = require("./routes/edit")
@@ -33,6 +34,7 @@ app.get("/", login.view);
 app.get("/homepage", homepage.view);
 app.get("/faq", faq.view);
 app.get("/trackers", trackers.view);
+app.post("/trackers",trackers.post);
 app.get("/edit", edit.view);
 app.get("/register", register.view)
 
