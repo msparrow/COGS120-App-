@@ -41,28 +41,28 @@
     <br>
      <center>
      <form class="container">
-    <input class ="btn-group" style = "background-color: #e7e7e7;" type="button" id="addMovie" value="Add a new Tracker"></input>
+    <input class ="btn-group" style = "background-color: #e7e7e7;" type="button" id="addTracker" value="Add a new Tracker"></input>
   </form>
   </center>
         <br>
     <center>
-    <ul class="container" id="movieList">
+    <ul class="container" id="trackerList">
     </ul>
   </center>
  
   <br>
   <center>
   <button class="container"><a href="/homepage">Back to Home</a></button>
-  <!--The add movie window dialog-->
+  <!--The add tracker window dialog-->
   </center>
-  <dialog id="mDialog" style="text-align:left;">
+  <dialog id="tDialog" style="text-align:left;">
     <form>
       <h4 style = "text-align:center">Tracker Info</h6>
-      Name:<input type="text" id="mTitle"></input><br />
-      Device Number:<input type="text" id="mYear"></input><br />
+      Name:<input type="text" id="tName"></input><br />
+      Device Number:<input type="text" id="tNum"></input><br />
       Range (1-10mi): 
      
-  <input type="range" name="rangeInput" min="0" max="10" step="1" list ="steplist" id="mRating" onchange="updateTextInput(this.value);">
+  <input type="range" name="rangeInput" min="0" max="10" step="1" list ="steplist" id="tRange" onchange="updateTextInput(this.value);">
 <input type="text" id="textInput" value="">
 <datalist id="steplist">
     <option>1</option>
@@ -77,8 +77,8 @@
     <option>10</option>
   </datalist>
   <br />
-      <input type="button" id="mCancel" value="Cancel"></input>
-      <input type="button" id="mSave" value="Save"></input>
+      <input type="button" id="tCancel" value="Cancel"></input>
+      <input type="button" id="tSave" value="Save"></input>
     </form>
   </dialog>
 
