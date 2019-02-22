@@ -1,15 +1,20 @@
-export default
-
 {
-  "value-1": 0, 
-  "value-2": 10,
-    "value-3": 1,
-    "value-4": 0,
-  "value-5": 0,
-    "value-6": 0,
+  "trackers": [
+    {
+      "name": "shafeen",
+      "number": 201,
+      "range": 15
+    },
+
+    {
+      "name": "SP",
+      "number": 501,
+      "range": 10
+    }
+
+  ]
+
+
+
+
 }
-
-
-
-  
-  

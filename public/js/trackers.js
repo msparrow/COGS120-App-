@@ -52,13 +52,47 @@ var msClose = () => {
   var name = tName.value;
   var number = tNum.value;
   var range = tRange.value;
+  console.log(name);
+
+    //Send the new enterd data to the server
+  $.post("/trackers",
+    {
+      "name": name,
+      "number":number,
+      "range":range,
+    },
+    function(data) {
+      //get the updated json data and then render on the tracker page
+      console.log(data);
+      trackerList.html() = "";
+
+      console.log("done");
+    }
+  )
+
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/trackers",
+  //   dataType: "json",
+  //   data: {
+  //     name: name,
+  //     number: number,
+  //     range: range, 
+  //   },
+  //   success: function() {
+  //     console.log("Alhamdulillah");
+  //   },
+  //   error: function() {
+  //     console.log("error");
+  //   }
+  // })
   
-  var arrEntry = parseForm(name, number, range);
-  console.log("Generating entry, parseForm returned: "+arrEntry);
+  // var arrEntry = parseForm(name, number, range);
+  // console.log("Generating entry, parseForm returned: "+arrEntry);
   
-  trackerArr.push(arrEntry);
-  localStorage.setItem("storedArr", JSON.stringify(trackerArr));
-  updateList();
+  // trackerArr.push(arrEntry);
+  // localStorage.setItem("storedArr", JSON.stringify(trackerArr));
+  // updateList();
   tSave.removeEventListener("click",msClose,false);
   tCancel.removeEventListener("click",mcClose,false);
   tDialog.close();
@@ -75,13 +109,17 @@ var mcClose = () => {
   tDialog.close();
   console.log("tracker dialog closed on cancel");
 }
-var lesClose = () =>{
+var lesClose = (e) =>{
+  e.preventDefault();
 //function lesClose(lid){
    
    var index = gid;
    var name = tName.value;
    var number = tNum.value;
    var range = tRange.value;
+   console.log(name);
+   console.log(number);
+   console.log(range);
    
    var newChild = parseForm(name, number, range);
    console.log("parseForm returned: "+newChild);

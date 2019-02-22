@@ -1,8 +1,12 @@
+
+
 var sim = document.getElementById("sim");
 var go = document.createElement("button");
 var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
+
+alert.setAttribute("style", "width: 260px");
 
 function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
