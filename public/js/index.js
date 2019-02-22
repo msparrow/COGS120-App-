@@ -19,15 +19,6 @@ var wait = () =>{
 
 var simulate = () =>{
   //simarea.removeChild(slider);
-  slider.setAttribute("type", "range");
-  slider.setAttribute("min", "0");
-  slider.setAttribute("max", "10");
-  slider.setAttribute("step", "1");
-  slider.setAttribute("min", "0");
-  slider.setAttribute("min", "0");
-  slider.setAttribute("value", "0")
-  slider.setAttribute("onchange","updateTextInput(this.value);");
-  simarea.appendChild(slider);
   var simtext = document.createElement("input");
   simtext.setAttribute("type", "text");
   simtext.setAttribute("id", "textInput");
@@ -41,7 +32,7 @@ var simulate = () =>{
         (serverData) =>{
             console.log("server data");
             console.log(serverData);
-            range = serverData[0];        
+            range = serverData[0].range;        
   })
   
   if(range == 0 || range > 50){
@@ -49,6 +40,7 @@ var simulate = () =>{
   }
   
   setInterval(function(){
+    document.querySelector('input[type=text]').value = "Tracker has moved " + i++ + " miles in past " + i + " seconds
     document.querySelector('input[type=text]').value = i++ + " miles away";
   }, 1000);
   
