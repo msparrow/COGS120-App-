@@ -56,14 +56,14 @@
   <!--The add tracker window dialog-->
   </center>
   <dialog id="tDialog" style="text-align:left;">
-    <form>
+    <form method="POST" action="/trackers">
       <h4 style = "text-align:center">Tracker Info</h6>
-      Name:<input type="text" id="tName"></input><br />
-      Device Number:<input type="text" id="tNum"></input><br />
+      Name:<input type="text" id="tName" name="tName"><br />
+      Device Number:<input type="text" id="tNum" name="tNum"><br />
       Range (1-10mi): 
      
   <input type="range" name="rangeInput" min="0" max="10" step="1" list ="steplist" id="tRange" onchange="updateTextInput(this.value);">
-<input type="text" id="textInput" value="">
+<input type="text" id="textInput" name="textInput">
 <datalist id="steplist">
     <option>1</option>
     <option>2</option>
@@ -77,8 +77,10 @@
     <option>10</option>
   </datalist>
   <br />
-      <input type="button" id="tCancel" value="Cancel"></input>
-      <input type="button" id="tSave" value="Save"></input>
+      <!-- 
+      <input type="button" id="tCancel" value="Cancel">
+      <input type="button" id="tSave" value="Save"></input>-->
+      <button type="submit">Save</button> 
     </form>
   </dialog>
 
