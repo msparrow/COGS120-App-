@@ -64,8 +64,12 @@ var msClose = () => {
     function(data) {
       //get the updated json data and then render on the tracker page
       console.log(data);
-      trackerList.html() = "";
+      // $("#trackerList").html(" ");
+      trackerArr = data;
+      console.log("tracker array ");
+      console.log(trackerArr);
 
+      updateList(data);
       console.log("done");
     }
   )
@@ -265,55 +269,81 @@ function getRange(lid){
 
 //BEGINNING OF listcontrol.js
 
-var updateList = () =>{
-    
-    iArr.splice(0,iArr.length);
-   
-    for(var i = trackerList.childNodes.length-1;i>0;i--){
-      (function(){
-      var index = i;
-      
-      trackerList.removeChild(trackerList.childNodes[index]);
-      }());
-    }
-  
-    console.log("trackerList child length: " + trackerList.childNodes.length);
-    
-    trackerList = document.getElementById("trackerList");
-  
-    for(var i=0;i<trackerArr.length;i++){
-    (function(){
-      
-    var index = i;
-    iArr.push(index);
-    
+var updateList = (data) => {
+  $("#trackerList").html(" ");
+  for(var i = 0; i < data.length; i++) {
     var listElem = document.createElement("li");
-    listElem.appendChild(document.createTextNode(trackerArr[index]));
-    
+    listElem.appendChild(document.createTextNode("Name: " + data[i].name + "T #: " + data[i].number + "Range: " + data[i].range));
+
     var bEdit = document.createElement("button");
     var bDelete = document.createElement("button");    
     bEdit.innerHTML = " Edit";
     bDelete.innerHTML = " Delete";
-    bEdit.setAttribute("id", "me"+index);
-    bDelete.setAttribute("id","md"+index);
-    listElem.setAttribute("id",index);
+    bEdit.setAttribute("id", "me"+i);
+    bDelete.setAttribute("id","md"+i);
+    listElem.setAttribute("id",i);
     
     bEdit.addEventListener("click",function()
-                          {lEdit(iArr[index]);},false);
+                          {lEdit(i);},false);
     
     bDelete.addEventListener("click",function()
-                            {lDelete(iArr[index]);},false);
+                            {lDelete(i);},false);
     
     listElem.appendChild(bEdit);
     listElem.appendChild(bDelete);
+    trackerList.appendChild(listElem);
+  }
+}
+
+// var updateList = () =>{
+    
+//     iArr.splice(0,iArr.length);
+   
+//     for(var i = trackerList.childNodes.length-1;i>0;i--){
+//       (function(){
+//       var index = i;
       
-    console.log("Updating tracker list: "+trackerArr[i]);
+//       trackerList.removeChild(trackerList.childNodes[index]);
+//       }());
+//     }
+  
+//     console.log("trackerList child length: " + trackerList.childNodes.length);
+    
+//     trackerList = document.getElementById("trackerList");
+  
+//     for(var i=0;i<trackerArr.length;i++){
+//     (function(){
+      
+//     var index = i;
+//     iArr.push(index);
+    
+//     var listElem = document.createElement("li");
+//     listElem.appendChild(document.createTextNode(trackerArr[index]));
+    
+    // var bEdit = document.createElement("button");
+    // var bDelete = document.createElement("button");    
+    // bEdit.innerHTML = " Edit";
+    // bDelete.innerHTML = " Delete";
+    // bEdit.setAttribute("id", "me"+index);
+    // bDelete.setAttribute("id","md"+index);
+    // listElem.setAttribute("id",index);
+    
+    // bEdit.addEventListener("click",function()
+    //                       {lEdit(iArr[index]);},false);
+    
+    // bDelete.addEventListener("click",function()
+    //                         {lDelete(iArr[index]);},false);
+    
+    // listElem.appendChild(bEdit);
+    // listElem.appendChild(bDelete);
+      
+//     console.log("Updating tracker list: "+trackerArr[i]);
     
     trackerList.appendChild(listElem);
-    }());
-  }
+//     }());
+//   }
   
-}
+// }
   
 function parseForm(name, number, range){
   
