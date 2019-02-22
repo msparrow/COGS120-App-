@@ -35,8 +35,18 @@ var simulate = () =>{
   
   var i = 0;
   
-  var range = 
+  var range = 0;
           
+  $.get("/trackerData",
+        (serverData) =>{
+            console.log("server data");
+            console.log(serverData);
+            range = serverData[0];        
+  })
+  
+  if(range == 0){
+          range = 8;
+  }
   
   setInterval(function(){
     document.querySelector('input[type=text]').value = i++ + " miles away";
@@ -45,12 +55,12 @@ var simulate = () =>{
   setInterval(function(){
   alert.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/webhw2-d13bb.appspot.com/o/alert.png?alt=media&token=48030043-d029-4513-8128-d6cb583539d3");
   alert.setAttribute("alt", "Error Retrieving Alert Image");
-  },5000);
+  },(range*1000));
   
   setInterval(function(){
   var audio = new Audio('/audio/alarm.wav');
   audio.play();
-    },5000);
+    },(range*1000));
   
   // Initialize and add the map
 
