@@ -40,7 +40,7 @@ var simulate = () =>{
   }
   
   setInterval(function(){
-    document.querySelector('input[type=text]').value = "Tracker moving... (1mi/s);
+    document.querySelector('input[type=text]').value = "Tracker moving... (1mi/s)";
   }, 1000);
   
   setInterval(function(){
