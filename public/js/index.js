@@ -40,7 +40,7 @@ var simulate = () =>{
   }
   
   setInterval(function(){
-    document.querySelector('input[type=text]').value = "Tracker has moved " + i++ + " miles in past " + i + " seconds";
+    document.querySelector('input[type=text]').value = "Tracker moving...  ("+ i++ + "mi)";
   }, 1000);
   
   setInterval(function(){
