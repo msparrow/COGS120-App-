@@ -34,9 +34,9 @@ var simulate = () =>{
   simarea.appendChild(simtext);
   
   var i = 0;
-  setInterval(function(){
-    document.querySelector('input[type=range]').value = i++;
-  }, 1000);
+  
+  var range = 
+          
   
   setInterval(function(){
     document.querySelector('input[type=text]').value = i++ + " miles away";
