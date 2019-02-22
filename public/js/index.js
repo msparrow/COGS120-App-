@@ -44,7 +44,7 @@ var simulate = () =>{
             range = serverData[0];        
   })
   
-  if(range == 0){
+  if(range == 0 || range > 50){
           range = 8;
   }
   
