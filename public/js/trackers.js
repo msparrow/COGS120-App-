@@ -20,6 +20,7 @@ var dDialog = document.getElementById("dDialog");
 var dCancel = document.getElementById("dCancel");
 var dOk = document.getElementById("dOk");
 var trackerArr; 
+var deletId;
 
 var trackerArr = [];
 if(JSON.parse(localStorage.getItem("storedArr")) != null){				 
@@ -168,6 +169,7 @@ function lEdit(lid) {
 }
 
 function lDelete(lid){
+  deletId = lid;
   gid = iArr[lid];
   console.log("Opened delete dialog on button id: "+lid);
   dDialog.showModal();
@@ -184,15 +186,29 @@ var dcClose = () =>{
 }
 
 var doClose = () =>{
-  var lid = gid;
-  console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);
-  trackerArr.splice(lid,1);
-  localStorage.setItem("storedArr", JSON.stringify(trackerArr));
-  updateList();
-  dCancel.removeEventListener("click",dcClose,false);
-  dOk.removeEventListener("click", doClose,false);
-  dDialog.close();
-  console.log("Delete dialog closed on Ok");
+
+  $.post("/trackerdelete",
+    {
+      "deleteId": deletId
+    },
+    function(data) {
+      updateList(data);
+      dCancel.removeEventListener("click",dcClose,false);
+      dOk.removeEventListener("click", doClose,false);
+      dDialog.close();
+      console.log("done");
+    }
+  )
+
+  // var lid = gid;
+  // console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);
+  // trackerArr.splice(lid,1);
+  // localStorage.setItem("storedArr", JSON.stringify(trackerArr));
+  // updateList();
+  // dCancel.removeEventListener("click",dcClose,false);
+  // dOk.removeEventListener("click", doClose,false);
+  // dDialog.close();
+  // console.log("Delete dialog closed on Ok");
 }
 
 function getName(lid){
@@ -293,6 +309,10 @@ var updateList = (data) => {
     listElem.appendChild(bDelete);
     trackerList.appendChild(listElem);
   }
+}
+
+var deletData = (i) => {
+
 }
 
 // var updateList = () =>{
@@ -409,3 +429,25 @@ function init() {
   console.log("Final trackerList node count: " + trackerList.childNodes.length);
   console.log("Head node of trackerList: " + trackerList.childNodes[0]);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

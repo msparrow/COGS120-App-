@@ -35,6 +35,8 @@ app.get("/homepage", homepage.view);
 app.get("/faq", faq.view);
 app.get("/trackers", trackers.view);
 app.post("/trackers",trackers.post);
+app.get("/trackerdata", trackers.getData);
+app.post("/trackerdelete", trackers.trackerDelete);
 app.get("/edit", edit.view);
 app.get("/register", register.view)
 
