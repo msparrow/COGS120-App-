@@ -49,17 +49,16 @@ var msClose = () => {
  
   console.log("Generating new entry for tracker list");
   
-  var title = tName.value;
-  var year = tNum.value;
-  var rating = tRange.value;
+  var name = tName.value;
+  var number = tNum.value;
+  var range = tRange.value;
   
-  var arrEntry = parseForm(title, year, rating);
+  var arrEntry = parseForm(name, number, range);
   console.log("Generating entry, parseForm returned: "+arrEntry);
   
   trackerArr.push(arrEntry);
   localStorage.setItem("storedArr", JSON.stringify(trackerArr));
   updateList();
-  console.log("iArr after msClose updateList: "+iArr);
   tSave.removeEventListener("click",msClose,false);
   tCancel.removeEventListener("click",mcClose,false);
   tDialog.close();
@@ -80,11 +79,11 @@ var lesClose = () =>{
 //function lesClose(lid){
    
    var index = gid;
-   var title = tName.value;
-   var year = tNum.value;
-   var rating = tRange.value;
+   var name = tName.value;
+   var number = tNum.value;
+   var range = tRange.value;
    
-   var newChild = parseForm(title, year, rating);
+   var newChild = parseForm(name, number, range);
    console.log("parseForm returned: "+newChild);
    trackerArr[index] = newChild;
    localStorage.setItem("storedArr", JSON.stringify(trackerArr));
@@ -117,9 +116,9 @@ var lecClose = () => {
 
 function lEdit(lid) {
   var index = iArr[lid];
-  tName.value = getTitle(index);
-  tNum.value = getYear(index);
-  tRange.value = getRating(index);
+  tName.value = getName(index);
+  tNum.value = getNumber(index);
+  tRange.value = getRange(index);
   tDialog.showModal();
   gid = index;
   tSave.addEventListener("click",lesClose,false);
@@ -154,27 +153,26 @@ var doClose = () =>{
   console.log("Delete dialog closed on Ok");
 }
 
-function getTitle(lid){
+function getName(lid){
   
   var entry = trackerList.childNodes[lid+1].childNodes[0].nodeValue;
-  var title = "";
+  var name = "";
   
   for(var i = 0; i<entry.length; i++){
     var index = i;
     if((entry.charAt(index)+""+entry.charAt(index+1)) == " ("){
-      console.log("getTitle() found: "+title);
-      return title;
+      return name;
     }
      
     else
-      title+=entry.charAt(index);
+      name+=entry.charAt(index);
   }
 }
 
-function getYear(lid){
+function getNumber(lid){
     
   var entry = trackerList.childNodes[lid+1].childNodes[0].nodeValue;
-  var year = "";
+  var number = "";
   var flag = 0;
   
   for(var i = 0; i<entry.length; i++){
@@ -183,23 +181,21 @@ function getYear(lid){
       flag = 1;
       
     if((entry.charAt(i+1)+""+entry.charAt(i+2)) == ") "){
-      year+=entry.charAt(i);
-      console.log("getYear() found: "+year);
-      return year;
+      number+=entry.charAt(i);
+      return number;
     }
      
     if(flag==1)
-      year+=entry.charAt(i);
+      number+=entry.charAt(i);
   }
   
 }
 
-function getRating(lid){
+function getRange(lid){
   //They either end in G, 3, or R
      
   var entry = trackerList.childNodes[lid+1].childNodes[0].nodeValue;
-  console.log("getRating found entry: "+entry);
-  var rating = "";
+  var range = "";
   var flag = 0;
   var flag2 = 0;
   
@@ -214,14 +210,12 @@ function getRating(lid){
     
     if(flag2 == 1){
       
-      rating+=entry.charAt(i);
+      range+=entry.charAt(i);
     }
     
     if((entry.charAt(i)=="R"||(entry.charAt(i)=="G" && entry.charAt(i+1)!="-")||entry.charAt(i)=="3")&&(flag2==1)){
        //&&(entry.charAt(i+2)+entry.charAt(i+3))=="\n"){
-      
-      console.log("getRating() found: "+rating);
-      return rating;
+            return range;
     }
   } 
 }
