@@ -12,17 +12,17 @@
     </ul>
   
   <form>
-    <input type="button" id="addMovie" value="Add Tracker"></input>
+    <input type="button" id="addTracker" value="Add Tracker"></input>
   </form>
   <button><a href="https://cogs120a5.firebaseapp.com//index.html">Back to Home</a></button>
-  <!--The add movie window dialog-->
-  <dialog id="mDialog" style="text-align:left;">
+  <!--The add tracker window dialog-->
+  <dialog id="tDialog" style="text-align:left;">
     <form>
-      Tracker Name:<input type="text" id="mTitle"></input><br />
-      Tracker No.:<input type="text" id="mYear"></input><br />
+      Tracker Name:<input type="text" id="tName"></input><br />
+      Tracker No.:<input type="text" id="tNum"></input><br />
      Range (1-10mi): 
      
-  <input type="range" name="rangeInput" min="0" max="10" step="1" list ="steplist" id="mRating" onchange="updateTextInput(this.value);">
+  <input type="range" name="rangeInput" min="0" max="10" step="1" list ="steplist" id="tRange" onchange="updateTextInput(this.value);">
 <input type="text" id="textInput" value="">
 <datalist id="steplist">
     <option>1</option>
@@ -37,8 +37,8 @@
     <option>10</option>
   </datalist>
   <br />
-      <input type="button" id="mCancel" value="Cancel"></input>
-      <input type="button" id="mSave" value="Save"></input>
+      <input type="button" id="tCancel" value="Cancel"></input>
+      <input type="button" id="tSave" value="Save"></input>
     </form>
   </dialog>
 
