@@ -21,6 +21,7 @@ var dCancel = document.getElementById("dCancel");
 var dOk = document.getElementById("dOk");
 var trackerArr; 
 var deletId;
+var editId;
 
 var trackerArr = [];
 if(JSON.parse(localStorage.getItem("storedArr")) != null){				 
@@ -159,13 +160,24 @@ var lecClose = () => {
 
 function lEdit(lid) {
   var index = iArr[lid];
-  tName.value = getName(index);
-  tNum.value = getNumber(index);
-  tRange.value = getRange(index);
+  editId = lid;
+  $.post("/trackeredit",
+    {
+      "editId": editId
+    },
+    function(data) {
+      console.log("edit data: ", data  )
+      tName.value = data.name;
+  tNum.value = data.number;
+  tRange.value = data.range;
   tDialog.showModal();
   gid = index;
   tSave.addEventListener("click",lesClose,false);
   tCancel.addEventListener("click",lecClose,false);
+    }
+  )
+
+  
 }
 
 function lDelete(lid){
@@ -199,6 +211,8 @@ var doClose = () =>{
       console.log("done");
     }
   )
+  var firstData;
+
 
   // var lid = gid;
   // console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);

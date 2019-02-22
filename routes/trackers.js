@@ -29,7 +29,10 @@ exports.trackerDelete= function(req, res) {
     res.json(trackersData);
 }
 
-
+exports.trackerEdit= function(req, res) {
+    var editId = req.body.editId;
+    res.json(trackersData[editId]);
+}
 
 
 
