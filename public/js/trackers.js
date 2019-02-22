@@ -1,128 +1,129 @@
 /*Functionality adapted from some code I (Matthew Sparrow) wrote last fall, link to site here https://crudhw-84e30.firebaseapp.com/crud.html*/
 
 //Initial page elements
-var movieList = document.getElementById("movieList");
-var listEntry = document.getElementById("listEntry");
-var addButton = document.getElementById("addMovie");
 
-//Movie dialog variables
-var mDialog = document.getElementById("mDialog");
-var mTitle = document.getElementById("mTitle");
-var mYear = document.getElementById("mYear");
-var mRating = document.getElementById("mRating");
-var mSave = document.getElementById("mSave");
-var mCancel = document.getElementById("mCancel");
+var trackerList = document.getElementById("trackerList");
+var listEntry = document.getElementById("listEntry");
+var addButton = document.getElementById("addTracker");
+//addtracker
+
+//tracker dialog variables
+var tDialog = document.getElementById("tDialog");
+var tName = document.getElementById("tName");
+var tNum = document.getElementById("tNum");
+var tRange = document.getElementById("tRange");
+var tSave = document.getElementById("tSave");
+var tCancel = document.getElementById("tCancel");
 
 //Delete confirm dialog variables
 var dDialog = document.getElementById("dDialog");
 var dCancel = document.getElementById("dCancel");
 var dOk = document.getElementById("dOk");
-var movieArr; 
+var trackerArr; 
 
-var movieArr = [];
+var trackerArr = [];
 if(JSON.parse(localStorage.getItem("storedArr")) != null){				 
-movieArr = JSON.parse(localStorage.getItem("storedArr"));
+  trackerArr = JSON.parse(localStorage.getItem("storedArr"));
 }
 var iArr = [];
 var gid;
-//Load moviedialog.js and listcontrol.js modules
+
 //var dialogScript = document.createElement("script");
-//dialogScript.src = "./moviedialog.js";
 //document.head.appendChild(dialogScript);
 function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
         }
-//BEGINNING OF moviedialog.js
+
 var openDialog = () => {
-  mTitle.value = "";
-  mYear.value = "";
-  mRating.value = "G";
+  tName.value = "";
+  tNum.value = "";
+  tRange.value = "G";
   
-  mDialog.showModal();
-  mSave.addEventListener("click",msClose,false);
-  mCancel.addEventListener("click",mcClose,false);
-  console.log("Movie dialog opened on Add Movie");
+  tDialog.showModal();
+  tSave.addEventListener("click",msClose,false);
+  tCancel.addEventListener("click",mcClose,false);
+  console.log("tracker dialog opened on Add Tracker");
 }
 
 var msClose = () => {
  
-  console.log("Generating new entry for movie list");
+  console.log("Generating new entry for tracker list");
   
-  var title = mTitle.value;
-  var year = mYear.value;
-  var rating = mRating.value;
+  var title = tName.value;
+  var year = tNum.value;
+  var rating = tRange.value;
   
   var arrEntry = parseForm(title, year, rating);
   console.log("Generating entry, parseForm returned: "+arrEntry);
   
-  movieArr.push(arrEntry);
-  localStorage.setItem("storedArr", JSON.stringify(movieArr));
+  trackerArr.push(arrEntry);
+  localStorage.setItem("storedArr", JSON.stringify(trackerArr));
   updateList();
   console.log("iArr after msClose updateList: "+iArr);
-  mSave.removeEventListener("click",msClose,false);
-  mCancel.removeEventListener("click",mcClose,false);
-  mDialog.close();
-  console.log("Movie dialog closed on Ok");
+  tSave.removeEventListener("click",msClose,false);
+  tCancel.removeEventListener("click",mcClose,false);
+  tDialog.close();
+  console.log("Tracker dialog closed on Ok");
 }
 
 //If user presses cancel, simply discard entry and close dialog
 var mcClose = () => {
-  mTitle.value = "";
-  mYear.value = "";
-  mRating.value = "G";
-  mSave.removeEventListener("click",msClose,false);
-  mCancel.removeEventListener("click",mcClose,false);
-  mDialog.close();
-  console.log("Movie dialog closed on cancel");
+  tName.value = "";
+  tNum.value = "";
+  tRange.value = "G";
+  tSave.removeEventListener("click",msClose,false);
+  tCancel.removeEventListener("click",mcClose,false);
+  tDialog.close();
+  console.log("tracker dialog closed on cancel");
 }
 var lesClose = () =>{
 //function lesClose(lid){
    
    var index = gid;
-   var title = mTitle.value;
-   var year = mYear.value;
-   var rating = mRating.value;
+   var title = tName.value;
+   var year = tNum.value;
+   var rating = tRange.value;
    
    var newChild = parseForm(title, year, rating);
    console.log("parseForm returned: "+newChild);
-   movieArr[index] = newChild;
-   localStorage.setItem("storedArr", JSON.stringify(movieArr));
+   trackerArr[index] = newChild;
+   localStorage.setItem("storedArr", JSON.stringify(trackerArr));
    var nodeChild = document.createTextNode(newChild);
-   console.log("b4 childReplace: MovieArr: " + movieArr);
+   console.log("b4 childReplace: trackerArr: " + trackerArr);
    console.log("b4 childReplace: iArr: "+ iArr);
-   movieList.childNodes[gid+1].replaceChild(nodeChild,
-             movieList.childNodes[gid+1].childNodes[0]);
+   trackerList.childNodes[gid+1].replaceChild(nodeChild,
+             trackerList.childNodes[gid+1].childNodes[0]);
    updateList();
-   console.log("movieArr aftr updateList lesC: "+movieArr);
+   console.log("trackerArr aftr updateList lesC: "+trackerArr);
    console.log("iArr after updateList lesC: "+ iArr);
-   mSave.removeEventListener("click",lesClose,false);
-   mCancel.removeEventListener("click",lecClose,false);
-   mDialog.close();
+   tSave.removeEventListener("click",lesClose,false);
+   tCancel.removeEventListener("click",lecClose,false);
+   tDialog.close();
    console.log("List edit closed on save");
 
 }
 
 var lecClose = () => {
   
-  mTitle.value = "";
-  mYear.value = "";
-  mRating.value = "G";
-  mSave.removeEventListener("click",lesClose,false);
-  mCancel.removeEventListener("click",lecClose,false);
-  mDialog.close();
+  tName.value = "";
+  tNum.value = "";
+  tRange.value = "G";
+  tSave.removeEventListener("click",lesClose,false);
+  tCancel.removeEventListener("click",lecClose,false);
+  tDialog.close();
   
   console.log("List edit closed on cancel");
 }
 
 function lEdit(lid) {
   var index = iArr[lid];
-  mTitle.value = getTitle(index);
-  mYear.value = getYear(index);
-  mRating.value = getRating(index);
-  mDialog.showModal();
+  tName.value = getTitle(index);
+  tNum.value = getYear(index);
+  tRange.value = getRating(index);
+  tDialog.showModal();
   gid = index;
-  mSave.addEventListener("click",lesClose,false);
-  mCancel.addEventListener("click",lecClose,false);
+  tSave.addEventListener("click",lesClose,false);
+  tCancel.addEventListener("click",lecClose,false);
 }
 
 function lDelete(lid){
@@ -143,9 +144,9 @@ var dcClose = () =>{
 
 var doClose = () =>{
   var lid = gid;
-  console.log("Splicing lid "+lid+" MovieArr[lid]: "+movieArr[lid]);
-  movieArr.splice(lid,1);
-  localStorage.setItem("storedArr", JSON.stringify(movieArr));
+  console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);
+  trackerArr.splice(lid,1);
+  localStorage.setItem("storedArr", JSON.stringify(trackerArr));
   updateList();
   dCancel.removeEventListener("click",dcClose,false);
   dOk.removeEventListener("click", doClose,false);
@@ -155,7 +156,7 @@ var doClose = () =>{
 
 function getTitle(lid){
   
-  var entry = movieList.childNodes[lid+1].childNodes[0].nodeValue;
+  var entry = trackerList.childNodes[lid+1].childNodes[0].nodeValue;
   var title = "";
   
   for(var i = 0; i<entry.length; i++){
@@ -172,7 +173,7 @@ function getTitle(lid){
 
 function getYear(lid){
     
-  var entry = movieList.childNodes[lid+1].childNodes[0].nodeValue;
+  var entry = trackerList.childNodes[lid+1].childNodes[0].nodeValue;
   var year = "";
   var flag = 0;
   
@@ -196,7 +197,7 @@ function getYear(lid){
 function getRating(lid){
   //They either end in G, 3, or R
      
-  var entry = movieList.childNodes[lid+1].childNodes[0].nodeValue;
+  var entry = trackerList.childNodes[lid+1].childNodes[0].nodeValue;
   console.log("getRating found entry: "+entry);
   var rating = "";
   var flag = 0;
@@ -236,26 +237,26 @@ var updateList = () =>{
     
     iArr.splice(0,iArr.length);
    
-    for(var i = movieList.childNodes.length-1;i>0;i--){
+    for(var i = trackerList.childNodes.length-1;i>0;i--){
       (function(){
       var index = i;
       
-      movieList.removeChild(movieList.childNodes[index]);
+      trackerList.removeChild(trackerList.childNodes[index]);
       }());
     }
   
-    console.log("movieList child length: " + movieList.childNodes.length);
+    console.log("trackerList child length: " + trackerList.childNodes.length);
     
-    movieList = document.getElementById("movieList");
+    trackerList = document.getElementById("trackerList");
   
-    for(var i=0;i<movieArr.length;i++){
+    for(var i=0;i<trackerArr.length;i++){
     (function(){
       
     var index = i;
     iArr.push(index);
     
     var listElem = document.createElement("li");
-    listElem.appendChild(document.createTextNode(movieArr[index]));
+    listElem.appendChild(document.createTextNode(trackerArr[index]));
     
     var bEdit = document.createElement("button");
     var bDelete = document.createElement("button");    
@@ -274,9 +275,9 @@ var updateList = () =>{
     listElem.appendChild(bEdit);
     listElem.appendChild(bDelete);
       
-    console.log("Updating movie list: "+movieArr[i]);
+    console.log("Updating tracker list: "+trackerArr[i]);
     
-    movieList.appendChild(listElem);
+    trackerList.appendChild(listElem);
     }());
   }
   
@@ -298,11 +299,11 @@ function parseForm(name, number, range){
 function init() {   
   var testid = 100;
   var flag = 0;
-  console.log("First child of movielist"+movieList.childNodes[0]);
+  console.log("First child of trackerlist"+trackerList.childNodes[0]);
   addButton.addEventListener("click",openDialog,false);
   
   
-  for(var i=0;i<movieArr.length;i++){
+  for(var i=0;i<trackerArr.length;i++){
     (function(){
     
     var index = i;
@@ -312,7 +313,7 @@ function init() {
     console.log("Init loop i: "+index);
     
     var listElem = document.createElement("li");
-    listElem.appendChild(document.createTextNode(movieArr[index]));
+    listElem.appendChild(document.createTextNode(trackerArr[index]));
     
     var bEdit = document.createElement("button");
     var bDelete = document.createElement("button");    
@@ -333,16 +334,16 @@ function init() {
     listElem.appendChild(bEdit);
     listElem.appendChild(bDelete);
     
-    movieList.appendChild(listElem);
+    trackerList.appendChild(listElem);
     console.log("listElem children: "+listElem.childNodes +"length:"+listElem.childNodes.length);
-    console.log("Movie List looks like (i="+i+"): "+movieArr[index]);
+    console.log("Tracker List looks like (i="+i+"): "+trackerArr[index]);
     console.log("This list element got the ID of"+listElem.id);
     //var buttons = document.getElementsByTagName('button');
     //console.log(buttons);
     }());
   }
-  localStorage.setItem("storedArr", JSON.stringify(movieArr));
+  localStorage.setItem("storedArr", JSON.stringify(trackerArr));
   console.log("iArr after init: "+iArr);
-  console.log("Final MovieList node count: " + movieList.childNodes.length);
-  console.log("Head node of MovieList: " + movieList.childNodes[0]);
+  console.log("Final trackerList node count: " + trackerList.childNodes.length);
+  console.log("Head node of trackerList: " + trackerList.childNodes[0]);
 }
