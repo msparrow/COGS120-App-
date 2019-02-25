@@ -34,7 +34,7 @@ var simulate = () =>{
             console.log(serverData);
             range = serverData[0].range;        
   })
-  
+  console.log(toString(range));  
   if(range == 0 || range > 50){
           range = 8;
   }
