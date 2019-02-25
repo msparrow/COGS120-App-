@@ -39,7 +39,7 @@ var simulate = () =>{
   }
   
   setInterval(function(){
-    document.querySelector('input[type=text]').value = "Tracker moving";
+    document.querySelector('input[type=text]').value = "Tracker range: "+ ++i + "/"+ range + "miles";
   }, 1000);
   
   setInterval(function(){
