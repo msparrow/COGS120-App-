@@ -27,14 +27,16 @@ var simulate = () =>{
   var i = 0;
   
   var range = 0;
-          
+           
   $.get("/trackerData",
         (serverData) =>{
             console.log("server data");
             console.log(serverData);
-            range = serverData[0].range;        
+            range = serverData[0].range;
+            console.log(serverData[0]);        
   })
-  console.log(toString(range));  
+
+  console.log(range);  
   if(range == 0 || range > 50){
           range = 8;
   }
