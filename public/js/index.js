@@ -1,5 +1,4 @@
 
-
 var sim = document.getElementById("sim");
 var go = document.createElement("button");
 var simarea = document.getElementById("simarea");
@@ -18,7 +17,6 @@ var wait = () =>{
 }
 
 var simulate = () =>{
-   
   //simarea.removeChild(slider);
   var simtext = document.createElement("input");
   simtext.setAttribute("type", "text");
@@ -28,20 +26,20 @@ var simulate = () =>{
   var i = 0;
   
   var range = 0;
-           
+          
   $.get("/trackerData",
         (serverData) =>{
             console.log("server data");
             console.log(serverData);
-            range = serverData[0].range;
-            console.log(serverData[0]);     
-            console.log(serverData[0].range);
-
-
-  console.log(range);  
+            range = serverData[0].range;        
+  
+  console.log(toString(range));
+  if(range == 0 || range > 50){
+          range = 8;
+  }
   
   setInterval(function(){
-    document.querySelector('input[type=text]').value = "Tracker moving..." + ++i;
+    document.querySelector('input[type=text]').value = "Tracker moving";
   }, 1000);
   
   setInterval(function(){
@@ -55,9 +53,9 @@ var simulate = () =>{
     },(range*1000));
   
   // Initialize and add the map
-
+  
   simarea.appendChild(alert);
-    })
+  })
   
   
   
@@ -73,47 +71,63 @@ var simulate = () =>{
   
   
 }
-
- // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-      function initMap() {
-        var latlng = new google.maps.LatLng(39.305,-76.617);
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: latlng,
-          zoom: 6
-        });
-        infoWindow = new google.maps.InfoWindow;
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+function initMap() {
+  
+        
+        var myLatLng = {lat: 32.8801, lng: -117.234};
+        var revLatLng = {lat: 32.8754, lng: -117.2419};
+        var muirLatLng = {lat:32.8786 , lng:-117.2405 };
+        var marshLatLng = {lat:32.8816 , lng:-117.2410 };
+        var ercLatLng = {lat:32.8853 , lng:-117.2422 };
+        var warrLatLng = {lat:32.8812 , lng:-117.2341 };
+        var sixLatLng = {lat: 32.8782, lng:-117.2318 };
+        var campusCoords = {
+          revelle: {
+            center: revLatLng
+          },
+          muir: {
+            center: muirLatLng
+          },
+          marshall: {
+            center: marshLatLng
+          },
+          erc: {
+            center: ercLatLng
+          },
+          warren: {
+            center: warrLatLng
+          },
+          sixth: {
+            center: sixLatLng
+          }
         }
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: myLatLng,
+          label: 'UCSD Campus Pin'
+        });
+        for(var coords in campusCoords){
+        var marker = new google.maps.Marker({
+          position: campusCoords[coords].center,
+          map: map,
+          title: 'Hello World!'
+        });
+        }
+   
+ 
+          // Add the circle for this city to the map.
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: myLatLng,
+            radius: 1500
+          });
+        
       }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
 
-sim.addEventListener("click", simulate)
+sim.addEventListener("click", simulate);
