@@ -18,6 +18,7 @@ var wait = () =>{
 }
 
 var simulate = () =>{
+   
   //simarea.removeChild(slider);
   var simtext = document.createElement("input");
   simtext.setAttribute("type", "text");
@@ -35,7 +36,7 @@ var simulate = () =>{
             range = serverData[0].range;
             console.log(serverData[0]);     
             console.log(serverData[0].range);
-  })
+
 
   console.log(range);  
   if(range == 0 || range > 50){
@@ -43,7 +44,7 @@ var simulate = () =>{
   }
   
   setInterval(function(){
-    document.querySelector('input[type=text]').value = "Tracker moving... (1.1 mi/s)";
+    document.querySelector('input[type=text]').value = "Tracker moving..." + ++i;
   }, 1000);
   
   setInterval(function(){
@@ -59,7 +60,7 @@ var simulate = () =>{
   // Initialize and add the map
 
   simarea.appendChild(alert);
-  
+    })
   
   
   
