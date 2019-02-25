@@ -33,7 +33,8 @@ var simulate = () =>{
             console.log("server data");
             console.log(serverData);
             range = serverData[0].range;
-            console.log(serverData[0]);        
+            console.log(serverData[0]);     
+            console.log(serverData[0].range);
   })
 
   console.log(range);  
