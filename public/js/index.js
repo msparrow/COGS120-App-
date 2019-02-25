@@ -39,9 +39,6 @@ var simulate = () =>{
 
 
   console.log(range);  
-  if(range == 0 || range > 50){
-          range = 8;
-  }
   
   setInterval(function(){
     document.querySelector('input[type=text]').value = "Tracker moving..." + ++i;
