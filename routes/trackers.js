@@ -18,7 +18,6 @@ exports.post= function(req, res) {
 }
 
 exports.getData= function(req, res) {
-    console.log(trackersData); 
     res.json(trackersData);
 }
 
@@ -26,6 +25,7 @@ exports.getData= function(req, res) {
 exports.trackerDelete= function(req, res) {
     var deleteId = req.body.deleteId;
     trackersData.splice(deleteId,1); 
+    console.log(trackersData);
     res.json(trackersData);
 }
 

@@ -19,14 +19,14 @@ var tCancel = document.getElementById("tCancel");
 var dDialog = document.getElementById("dDialog");
 var dCancel = document.getElementById("dCancel");
 var dOk = document.getElementById("dOk");
-var trackerArr; 
-var deletId;
+var deleteId;
 var editId;
 
 var trackerArr = [];
 if(JSON.parse(localStorage.getItem("storedArr")) != null){				 
   trackerArr = JSON.parse(localStorage.getItem("storedArr"));
 }
+
 var iArr = [];
 var gid;
 
@@ -34,7 +34,7 @@ var gid;
 //document.head.appendChild(dialogScript);
 function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
-        }
+}
 
 var openDialog = () => {
   tName.value = "";
@@ -68,13 +68,10 @@ var msClose = () => {
       console.log(data);
       // $("#trackerList").html(" ");
       trackerArr = data;
-      console.log("tracker array ");
-      console.log(trackerArr);
-
       updateList(data);
-      console.log("done");
     }
   )
+  
 
   // $.ajax({
   //   type: "POST",
@@ -102,7 +99,6 @@ var msClose = () => {
   tSave.removeEventListener("click",msClose,false);
   tCancel.removeEventListener("click",mcClose,false);
   tDialog.close();
-  console.log("Tracker dialog closed on Ok");
 }
 
 //If user presses cancel, simply discard entry and close dialog
@@ -113,7 +109,6 @@ var mcClose = () => {
   tSave.removeEventListener("click",msClose,false);
   tCancel.removeEventListener("click",mcClose,false);
   tDialog.close();
-  console.log("tracker dialog closed on cancel");
 }
 var lesClose = (e) =>{
   e.preventDefault();
@@ -158,32 +153,61 @@ var lecClose = () => {
   console.log("List edit closed on cancel");
 }
 
+
+var doClose = () =>{
+  // var lid = gid;
+  // console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);
+  // trackerArr.splice(lid,1);
+  // localStorage.setItem("storedArr", JSON.stringify(trackerArr));
+  // updateList();
+  // dCancel.removeEventListener("click",dcClose,false);
+  // dOk.removeEventListener("click", doClose,false);
+  // dDialog.close();
+  // console.log("Delete dialog closed on Ok");
+
+  $.post("/trackerdelete",
+    {
+      "deleteId": deleteId
+    },
+    function(data) {
+      updateList(data);
+      dCancel.removeEventListener("click",dcClose,false);
+      dOk.removeEventListener("click", doClose,false);
+      dDialog.close();
+      console.log("done");
+    }
+  )
+  }
+
 function lEdit(lid) {
-  var index = iArr[lid];
-  editId = lid;
+  editId = lid - 1;
+  console.log("edit id is " + editId)
+  tDialog.showModal();
   $.post("/trackeredit",
     {
       "editId": editId
     },
     function(data) {
       console.log("edit data: ", data  )
-      tName.value = data.name;
-  tNum.value = data.number;
-  tRange.value = data.range;
-  tDialog.showModal();
-  gid = index;
-  tSave.addEventListener("click",lesClose,false);
-  tCancel.addEventListener("click",lecClose,false);
+      tName.value = data.name
+      tNum.value = data.number;
+      tRange.value = data.range;
+      tSave.addEventListener("click",lesClose,false);
+      tCancel.addEventListener("click",lecClose,false);
     }
   )
-
-  
 }
 
-function lDelete(lid){
+/*function lDelete(lid){
   deletId = lid;
   gid = iArr[lid];
   console.log("Opened delete dialog on button id: "+lid);
+  dDialog.showModal();
+}*/
+
+function lDelete(lid){
+  console.log("delete id in ldelete is " + lid );
+  deleteId = lid - 1;
   dDialog.showModal();
   dCancel.addEventListener("click",dcClose,false);
   dOk.addEventListener("click", doClose,false);
@@ -198,20 +222,21 @@ var dcClose = () =>{
 }
 
 var doClose = () =>{
+  console.log("deleting it")
+  console.log("delete id :" + deleteId);
 
   $.post("/trackerdelete",
     {
-      "deleteId": deletId
+      "deleteId": deleteId
     },
     function(data) {
-      updateList(data);
       dCancel.removeEventListener("click",dcClose,false);
-      dOk.removeEventListener("click", doClose,false);
+      dOk.removeEventListener("click", doClose,false);``
       dDialog.close();
+      updateList(data);
       console.log("done");
     }
   )
-  var firstData;
 
 
   // var lid = gid;
@@ -303,6 +328,7 @@ var updateList = (data) => {
   $("#trackerList").html(" ");
   for(var i = 0; i < data.length; i++) {
     var listElem = document.createElement("li");
+    console.log("adding data at :" + i);
     listElem.appendChild(document.createTextNode("Name: " + data[i].name + "T #: " + data[i].number + "Range: " + data[i].range));
 
     var bEdit = document.createElement("button");
@@ -325,9 +351,6 @@ var updateList = (data) => {
   }
 }
 
-var deletData = (i) => {
-
-}
 
 // var updateList = () =>{
     
@@ -373,7 +396,7 @@ var deletData = (i) => {
       
 //     console.log("Updating tracker list: "+trackerArr[i]);
     
-    trackerList.appendChild(listElem);
+   // trackerList.appendChild(listElem);
 //     }());
 //   }
   
@@ -392,7 +415,13 @@ function parseForm(name, number, range){
   return retChild;
 }
 
-function init() {   
+
+function init() {  
+
+  $.get("/trackerData", (serverData) => {
+    updateList(serverData);
+  })
+
   var testid = 100;
   var flag = 0;
   console.log("First child of trackerlist"+trackerList.childNodes[0]);
@@ -402,40 +431,40 @@ function init() {
   for(var i=0;i<trackerArr.length;i++){
     (function(){
     
-    var index = i;
+      var index = i;
+      
+      iArr.push(index);
+      
+      console.log("Init loop i: "+index);
+      
+      var listElem = document.createElement("li");
+      listElem.appendChild(document.createTextNode(trackerArr[index]));
+      
+      var bEdit = document.createElement("button");
+      var bDelete = document.createElement("button");    
+      bEdit.innerHTML = " Edit";
+      bDelete.innerHTML = " Delete";
+      bEdit.setAttribute("id", "me"+index);
+      bDelete.setAttribute("id","md"+index);
+      listElem.setAttribute("id",index);
     
-    iArr.push(index);
-    
-    console.log("Init loop i: "+index);
-    
-    var listElem = document.createElement("li");
-    listElem.appendChild(document.createTextNode(trackerArr[index]));
-    
-    var bEdit = document.createElement("button");
-    var bDelete = document.createElement("button");    
-    bEdit.innerHTML = " Edit";
-    bDelete.innerHTML = " Delete";
-    bEdit.setAttribute("id", "me"+index);
-    bDelete.setAttribute("id","md"+index);
-    listElem.setAttribute("id",index);
-    
-    bEdit.addEventListener("click",function()
-                          {lEdit(iArr[index]);},false);
-    
-    console.log("Adding delete listener for listElem.id: "+listElem.id);
-    bDelete.addEventListener("click",function()
-                            {lDelete(iArr[index]);},false);
-    console.log("Adding delete listener for listElem.id: "+listElem.id);
-    
-    listElem.appendChild(bEdit);
-    listElem.appendChild(bDelete);
-    
-    trackerList.appendChild(listElem);
-    console.log("listElem children: "+listElem.childNodes +"length:"+listElem.childNodes.length);
-    console.log("Tracker List looks like (i="+i+"): "+trackerArr[index]);
-    console.log("This list element got the ID of"+listElem.id);
-    //var buttons = document.getElementsByTagName('button');
-    //console.log(buttons);
+      bEdit.addEventListener("click",function()
+                            {lEdit(i);},false);
+      
+      console.log("Adding delete listener for listElem.id: "+listElem.id);
+      bDelete.addEventListener("click",function()
+                              {lDelete(iArr[index]);},false);
+      console.log("Adding delete listener for listElem.id: "+listElem.id);
+      
+      listElem.appendChild(bEdit);
+      listElem.appendChild(bDelete);
+      
+      trackerList.appendChild(listElem);
+      console.log("listElem children: "+listElem.childNodes +"length:"+listElem.childNodes.length);
+      console.log("Tracker List looks like (i="+i+"): "+trackerArr[index]);
+      console.log("This list element got the ID of"+listElem.id);
+      //var buttons = document.getElementsByTagName('button');
+      //console.log(buttons);
     }());
   }
   localStorage.setItem("storedArr", JSON.stringify(trackerArr));
@@ -443,25 +472,3 @@ function init() {
   console.log("Final trackerList node count: " + trackerList.childNodes.length);
   console.log("Head node of trackerList: " + trackerList.childNodes[0]);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

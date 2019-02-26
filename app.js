@@ -37,6 +37,7 @@ app.get("/trackers", trackers.view);
 app.post("/trackers",trackers.post);
 app.get("/trackerdata", trackers.getData);
 app.post("/trackerdelete", trackers.trackerDelete);
+
 app.post("/trackeredit/", trackers.trackerEdit);
 app.get("/edit", edit.view);
 app.get("/register", register.view)
