@@ -122,13 +122,21 @@ function initMap() {
           center: myLatLng,
           label: 'UCSD Campus Pin'
         });
-        for(var coords in campusCoords){
-        var marker = new google.maps.Marker({
-          position: campusCoords[coords].center,
-          map: map,
-          title: 'Hello World!'
-        });
-        }
+         $.get("/trackerData",
+        (serverData) =>{
+                   if(serverData.length == 0){
+                      document.querySelector('input[type=text]').value = "No Active Trackers";       
+                   }
+                   else{
+                  for(var coords in serverData.length){
+                  var marker = new google.maps.Marker({
+                    position: campusCoords[coords].center,
+                    map: map,
+                    title: 'Hello World!'
+                  });
+                  }
+                   }
+         });
    
  
           // Add the circle for this city to the map.
