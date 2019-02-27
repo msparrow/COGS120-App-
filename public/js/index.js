@@ -58,7 +58,7 @@ var simulate = () =>{
   
   setInterval(function(){
   if(alarmset == 0){
-        simarea.removeChild(simtext);
+        simtext.style.display = 'none';
         alarmset = 1;
   }
   alert.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/webhw2-d13bb.appspot.com/o/alert.png?alt=media&token=48030043-d029-4513-8128-d6cb583539d3");
