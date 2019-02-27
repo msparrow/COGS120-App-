@@ -127,17 +127,14 @@ function initMap() {
          $.get("/trackerData",
         (serverData) =>{
                    console.log("Map Function found "+serverData.length+" trackers");
-                   if(serverData.length == 0){
-                      document.querySelector('input[type=text]').value = "No Active Trackers";       
-                   }
-                   else{
-                  for(var coords in serverData.length){
+                  var i;
+                  for(i=0; i<serverData.length; i++){
                   var marker = new google.maps.Marker({
-                    position: campusCoords[coords].center,
+                    position: campusCoords[i].center,
                     map: map,
                     title: 'Hello World!'
                   });
-                  }
+                  
                    }
          });
    
