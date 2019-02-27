@@ -59,7 +59,7 @@ var simulate = () =>{
   setInterval(function(){
         simarea.removechild(simtext);
     },(range*2000));
-  })
+  });
           
   
   
