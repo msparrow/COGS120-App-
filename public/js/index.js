@@ -104,21 +104,27 @@ function initMap() {
         var sixLatLng = {lat: 32.8782, lng:-117.2318 };
         var campusCoords = {
           0: {
+            name: "Revelle",
             center: revLatLng
           },
           1: {
+            name: "Muir",   
             center: muirLatLng
           },
           2: {
+            name: "Marshall",
             center: marshLatLng
           },
           3: {
+            name: "ERC",
             center: ercLatLng
           },
           4: {
+            name: "Warren",
             center: warrLatLng
           },
           5: {
+            name: "Sixth",
             center: sixLatLng
           }
         }
@@ -153,6 +159,20 @@ function initMap() {
             center: myLatLng,
             radius: 1500
           });
+          
+          $.get("/trackerData",
+        (serverData) =>{
+                   console.log("Select finder found "+serverData.length+" trackers");
+                  var i;
+                  var sim = document.getElementById("sim");
+                  for(i=0; i<serverData.length; i++){
+                  var option = document.createElement("option");
+                  option.setAttribute("value", campusCoords[i].name );
+                  option.setAttribute("textContent", campusCoords[i].name);
+                  sim.appendChild(option);
+                  
+                   }
+         });
         
       }
 
