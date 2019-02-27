@@ -126,6 +126,7 @@ function initMap() {
         });
          $.get("/trackerData",
         (serverData) =>{
+                   console.log("Map Function found "+serverData.length+" trackers");
                    if(serverData.length == 0){
                       document.querySelector('input[type=text]').value = "No Active Trackers";       
                    }
