@@ -22,7 +22,7 @@ var simulate = () =>{
   simtext.setAttribute("type", "text");
   simtext.setAttribute("id", "textInput");
   simarea.appendChild(simtext);
-  
+  var alarmset = 0;
   var i = 0;
   
   var range = 0;
@@ -52,7 +52,10 @@ var simulate = () =>{
   }, 1000);
   
   setInterval(function(){
-  simarea.removeChild(simtext);
+  if(alarmset == 0){
+        simarea.removeChild(simtext);
+        alarmset = 1;
+  }
   alert.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/webhw2-d13bb.appspot.com/o/alert.png?alt=media&token=48030043-d029-4513-8128-d6cb583539d3");
   alert.setAttribute("alt", "Error Retrieving Alert Image");
   },(range*1000));
