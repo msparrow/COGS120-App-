@@ -4,6 +4,7 @@ var go = document.createElement("button");
 var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
+var simtext = document.createElement("input);
 
 alert.setAttribute("style", "width: 260px");
 
@@ -19,7 +20,6 @@ var wait = () =>{
 var simulate = () =>{
   simarea.removeChild(simtext);
   //simarea.removeChild(slider);
-  var simtext = document.createElement("input");
   simtext.setAttribute("type", "text");
   simtext.setAttribute("id", "textInput");
   simarea.appendChild(simtext);
