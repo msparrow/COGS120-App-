@@ -5,7 +5,9 @@ var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
 var simtext = document.createElement("input");
+simtext.style.display = 'none';
 simarea.appendChild(simtext);
+
 
 alert.setAttribute("style", "width: 260px");
 
@@ -23,6 +25,7 @@ var simulate = () =>{
   //simarea.removeChild(slider);
   simtext.setAttribute("type", "text");
   simtext.setAttribute("id", "textInput");
+  simtext.style.display = 'block';
   simarea.appendChild(simtext);
   var alarmset = 0;
   var i = 0;
