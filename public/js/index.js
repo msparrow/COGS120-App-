@@ -100,22 +100,22 @@ function initMap() {
         var warrLatLng = {lat:32.8812 , lng:-117.2341 };
         var sixLatLng = {lat: 32.8782, lng:-117.2318 };
         var campusCoords = {
-          revelle: {
+          0: {
             center: revLatLng
           },
-          muir: {
+          1: {
             center: muirLatLng
           },
-          marshall: {
+          2: {
             center: marshLatLng
           },
-          erc: {
+          3: {
             center: ercLatLng
           },
-          warren: {
+          4: {
             center: warrLatLng
           },
-          sixth: {
+          5: {
             center: sixLatLng
           }
         }
