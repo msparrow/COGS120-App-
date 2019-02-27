@@ -5,6 +5,7 @@ var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
 var simtext = document.createElement("input");
+simarea.appendChild(simtext);
 
 alert.setAttribute("style", "width: 260px");
 
