@@ -35,6 +35,8 @@ var simulate = () =>{
             range = serverData[0].range;
             }
             else{
+                simarea.removeChild(simtext);
+                simarea.appendChild(simtext);
                 document.querySelector('input[type=text]').value = "No Active Trackers";
                 return 0;
             }
