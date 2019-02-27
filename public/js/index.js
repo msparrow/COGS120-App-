@@ -168,7 +168,7 @@ function initMap() {
                   for(i=0; i<serverData.length; i++){
                   var option = document.createElement("option");
                   option.setAttribute("value", campusCoords[i].name );
-                  option.setAttribute("textContent", campusCoords[i].name);
+                  option.setAttribute("innerHTML", campusCoords[i].name);
                   sim.appendChild(option);
                   
                    }
