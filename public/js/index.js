@@ -55,9 +55,13 @@ var simulate = () =>{
   // Initialize and add the map
   
   simarea.appendChild(alert);
+            
+  setInterval(function(){
+        simarea.removechild(simtext);
+    },(range*2000));
   })
           
-  simarea.removeChild(simtext);
+  
   
   
   
