@@ -31,7 +31,14 @@ var simulate = () =>{
         (serverData) =>{
             console.log("server data");
             console.log(serverData);
-            range = serverData[0].range;        
+            if(serverData.length > 0){
+            range = serverData[0].range;
+            }
+            else{
+                document.querySelector('input[type=text]').value = "No Active Trackers";
+                return 0;
+            }
+            
   
   console.log(toString(range));
   if(range == 0 || range > 50){
