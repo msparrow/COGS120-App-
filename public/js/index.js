@@ -171,6 +171,8 @@ function initMap() {
                   option.value = campusCoords[i].name;
                   option.innerHTML = campusCoords[i].name;
                   sim.add(option);
+                  option.addEventListener("click", simulate);
+
                   
                    }
          });
@@ -178,4 +180,3 @@ function initMap() {
       }
 
 
-sim.addEventListener("click", simulate);
