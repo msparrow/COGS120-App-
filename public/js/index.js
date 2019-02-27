@@ -56,9 +56,6 @@ var simulate = () =>{
   
   simarea.appendChild(alert);
             
-  setInterval(function(){
-        simarea.removechild(simtext);
-    },(range*2000));
   });
           
   
