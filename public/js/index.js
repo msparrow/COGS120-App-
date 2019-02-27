@@ -39,7 +39,9 @@ var simulate = () =>{
   }
   
   setInterval(function(){
+    if(i<=range){
     document.querySelector('input[type=text]').value = "Tracker ("+ serverData[0].name+"): "+ ++i + "/"+ range + "miles";
+    }
   }, 1000);
   
   setInterval(function(){
