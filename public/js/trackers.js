@@ -337,10 +337,13 @@ function getRange(lid){
 var updateList = (data) => {
   var i;
   for(i=0;i<trackerList.childNodes.length;i++){
+    (function(){
     trackerList.removeChild(trackerList.childNodes[i]);
+    }());
   }
   $("#trackerList").html(" ");
   for(var i = 0; i < data.length; i++) {
+    (function(){
     var listElem = document.createElement("li");
     console.log("adding data at :" + i);
     listElem.appendChild(document.createTextNode("Name: " + data[i].name + " T #: " + data[i].number + " Range: " + data[i].range));
@@ -362,6 +365,7 @@ var updateList = (data) => {
     listElem.appendChild(bEdit);
     listElem.appendChild(bDelete);
     trackerList.appendChild(listElem);
+    }());
   }
 }
 
