@@ -336,6 +336,7 @@ function getRange(lid){
 
 var updateList = (data) => {
   var i;
+  console.log("Update list found "+trackerList.childNodes.length+" trackers");
   for(i=0;i<trackerList.childNodes.length;i++){
     (function(){
     trackerList.removeChild(trackerList.childNodes[i]);
