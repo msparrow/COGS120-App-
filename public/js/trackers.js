@@ -23,9 +23,6 @@ var deleteId;
 var editId;
 
 var trackerArr = [];
-if(JSON.parse(localStorage.getItem("storedArr")) != null){				 
-  trackerArr = JSON.parse(localStorage.getItem("storedArr"));
-}
 
 var iArr = [];
 var gid;
@@ -71,7 +68,7 @@ var msClose = () => {
       trackerArr = data;
       updateList(data);
     }
-  )
+  );
   
 
   // $.ajax({
@@ -128,7 +125,7 @@ var lesClose = (e) =>{
      console.log(data);
      updateList(data);
    }
- )
+ );
  
 
 
@@ -187,7 +184,7 @@ var doClose = () =>{
       dDialog.close();
       console.log("done");
     }
-  )
+  );
   }
 
 function lEdit(lid) {
@@ -205,7 +202,7 @@ function lEdit(lid) {
       tSave.addEventListener("click",lesClose,false);
       tCancel.addEventListener("click",lecClose,false);
     }
-  )
+  );
 }
 
 /*function lDelete(lid){
@@ -246,7 +243,7 @@ var doClose = () =>{
       updateList(data);
       console.log("done");
     }
-  )
+  );
 
 
   // var lid = gid;
@@ -440,8 +437,8 @@ function init() {
 
   $.get("/trackerData", (serverData) => {
     updateList(serverData);
-  })
-
+  });
+/*
   var testid = 100;
   var flag = 0;
   console.log("First child of trackerlist"+trackerList.childNodes[0]);
@@ -491,4 +488,5 @@ function init() {
   console.log("iArr after init: "+iArr);
   console.log("Final trackerList node count: " + trackerList.childNodes.length);
   console.log("Head node of trackerList: " + trackerList.childNodes[0]);
+  */
 }
