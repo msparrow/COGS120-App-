@@ -4,6 +4,10 @@ var go = document.createElement("button");
 var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
+var simtext = document.createElement("input");
+simtext.style.display = 'none';
+simarea.appendChild(simtext);
+
 
 alert.setAttribute("style", "width: 260px");
 
@@ -17,12 +21,13 @@ var wait = () =>{
 }
 
 var simulate = () =>{
+  simarea.removeChild(simtext);
   //simarea.removeChild(slider);
-  var simtext = document.createElement("input");
   simtext.setAttribute("type", "text");
   simtext.setAttribute("id", "textInput");
+  simtext.style.display = 'block';
   simarea.appendChild(simtext);
-  
+  var alarmset = 0;
   var i = 0;
   
   var range = 0;
@@ -31,7 +36,14 @@ var simulate = () =>{
         (serverData) =>{
             console.log("server data");
             console.log(serverData);
-            range = serverData[0].range;        
+            if(serverData.length > 0){
+            range = serverData[0].range;
+            }
+            else{
+                document.querySelector('input[type=text]').value = "No Active Trackers";
+                return 0;
+            }
+            
   
   console.log(toString(range));
   if(range == 0 || range > 50){
@@ -39,23 +51,32 @@ var simulate = () =>{
   }
   
   setInterval(function(){
+    if(i<=range){
     document.querySelector('input[type=text]').value = "Tracker ("+ serverData[0].name+"): "+ ++i + "/"+ range + "miles";
+    }
   }, 1000);
   
   setInterval(function(){
+  if(alarmset == 0){
+        simtext.style.display = 'none';
+        alarmset = 1;
+  }
   alert.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/webhw2-d13bb.appspot.com/o/alert.png?alt=media&token=48030043-d029-4513-8128-d6cb583539d3");
   alert.setAttribute("alt", "Error Retrieving Alert Image");
-  },(range*1000));
+  },(range*1000 + 1000));
   
   setInterval(function(){
   var audio = new Audio('/audio/alarm.wav');
   audio.play();
-    },(range*1000));
+    },(range*1000 + 1000));
   
   // Initialize and add the map
   
   simarea.appendChild(alert);
-  })
+            
+  });
+          
+  
   
   
   
@@ -82,22 +103,28 @@ function initMap() {
         var warrLatLng = {lat:32.8812 , lng:-117.2341 };
         var sixLatLng = {lat: 32.8782, lng:-117.2318 };
         var campusCoords = {
-          revelle: {
+          0: {
+            name: "Revelle",
             center: revLatLng
           },
-          muir: {
+          1: {
+            name: "Muir",   
             center: muirLatLng
           },
-          marshall: {
+          2: {
+            name: "Marshall",
             center: marshLatLng
           },
-          erc: {
+          3: {
+            name: "ERC",
             center: ercLatLng
           },
-          warren: {
+          4: {
+            name: "Warren",
             center: warrLatLng
           },
-          sixth: {
+          5: {
+            name: "Sixth",
             center: sixLatLng
           }
         }
@@ -106,13 +133,19 @@ function initMap() {
           center: myLatLng,
           label: 'UCSD Campus Pin'
         });
-        for(var coords in campusCoords){
-        var marker = new google.maps.Marker({
-          position: campusCoords[coords].center,
-          map: map,
-          title: 'Hello World!'
-        });
-        }
+         $.get("/trackerData",
+        (serverData) =>{
+                   console.log("Map Function found "+serverData.length+" trackers");
+                  var i;
+                  for(i=0; i<serverData.length; i++){
+                  var marker = new google.maps.Marker({
+                    position: campusCoords[i].center,
+                    map: map,
+                    title: 'Hello World!'
+                  });
+                  
+                   }
+         });
    
  
           // Add the circle for this city to the map.
@@ -126,8 +159,24 @@ function initMap() {
             center: myLatLng,
             radius: 1500
           });
+          
+          $.get("/trackerData",
+        (serverData) =>{
+                   console.log("Select finder found "+serverData.length+" trackers");
+                  var i;
+                  var sim = document.getElementById("sim");
+                  for(i=0; i<serverData.length; i++){
+                  var option = document.createElement("option");
+                  console.log("campusCoords[i].name = " + campusCoords[i].name);
+                  option.value = campusCoords[i].name;
+                  option.innerHTML = campusCoords[i].name;
+                  sim.add(option);
+                  option.addEventListener("click", simulate);
+
+                  
+                   }
+         });
         
       }
 
 
-sim.addEventListener("click", simulate);
