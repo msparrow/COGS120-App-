@@ -335,6 +335,10 @@ function getRange(lid){
 //BEGINNING OF listcontrol.js
 
 var updateList = (data) => {
+  var i;
+  for(i=0;i<trackerlist.childNodes.length;i++){
+    trackerlist.removeChild(trackerlist.childNodes[i]);
+  }
   $("#trackerList").html(" ");
   for(var i = 0; i < data.length; i++) {
     var listElem = document.createElement("li");
