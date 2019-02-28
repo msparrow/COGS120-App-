@@ -354,7 +354,7 @@ var updateList = (data) => {
     bEdit.setAttribute("id", "me"+i);
     bDelete.setAttribute("id","md"+i);
     listElem.setAttribute("id",i);
-    
+    console.log("Edit and Delete buttons added with ID (me/md)"+i);
     bEdit.addEventListener("click",function()
                           {lEdit(i);},false);
     
