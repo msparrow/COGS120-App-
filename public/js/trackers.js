@@ -434,17 +434,17 @@ function parseForm(name, number, range){
 
 
 function init() {  
-
+  addButton.addEventListener("click",openDialog,false);
   $.get("/trackerData", (serverData) => {
     updateList(serverData);
   });
-/*
+
   var testid = 100;
   var flag = 0;
   console.log("First child of trackerlist"+trackerList.childNodes[0]);
-  addButton.addEventListener("click",openDialog,false);
   
   
+  /*
   for(var i=0;i<trackerArr.length;i++){
     (function(){
     
