@@ -28,16 +28,20 @@ var trackers = require ("./routes/trackers")
 var faq = require("./routes/faq")
 var register = require ("./routes/register")
 var edit = require("./routes/edit")
-
+var trackersB = require("./routes/trackers")
 
 app.get("/", login.view);
 app.get("/homepage", homepage.view);
 app.get("/faq", faq.view);
 app.get("/trackers", trackers.view);
 app.post("/trackers",trackers.post);
+
+app.get("/B_trackers", trackersB.view);
+app.post("/B_trackers",trackersB.post);
+
 app.get("/trackerdata", trackers.getData);
 app.post("/trackerdelete", trackers.trackerDelete);
-
+app.post("/editSave",trackers.trackerSaveEdited)
 app.post("/trackeredit/", trackers.trackerEdit);
 app.get("/edit", edit.view);
 app.get("/register", register.view)

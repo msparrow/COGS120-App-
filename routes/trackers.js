@@ -25,13 +25,29 @@ exports.getData= function(req, res) {
 exports.trackerDelete= function(req, res) {
     var deleteId = req.body.deleteId;
     trackersData.splice(deleteId,1); 
-    console.log(trackersData);
+    // console.log(trackersData);
     res.json(trackersData);
 }
 
 exports.trackerEdit= function(req, res) {
     var editId = req.body.editId;
     res.json(trackersData[editId]);
+}
+
+exports.trackerSaveEdited = function(req, res) {
+    var editedId = req.body.editedID; 
+    var name = req.body.name;
+    var number = req.body.number;
+    var range = req.body.range;
+    console.log(trackersData);
+    var editedData= {
+        "name" : name,
+        "number": number,
+        "range": range
+    }
+    trackersData.splice(editedId, 1, editedData);
+   console.log(trackersData);
+    res.json(trackersData);
 }
 
 

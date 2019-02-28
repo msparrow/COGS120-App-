@@ -51,6 +51,7 @@ var msClose = () => {
  
   console.log("Generating new entry for tracker list");
   
+  // getting values from input field and putting into these variables 
   var name = tName.value;
   var number = tNum.value;
   var range = tRange.value;
@@ -113,27 +114,37 @@ var mcClose = () => {
 var lesClose = (e) =>{
   e.preventDefault();
 //function lesClose(lid){
+   console.log("edit id " + editId);
+
+   $.post("/editSave",
+   {
+     "name": tName.value,
+     "number":tNum.value,
+     "range":tRange.value,
+     "editId": editId,
+   },
+   function(data) {
+     //get the updated json data and then render on the tracker page
+     console.log(data);
+     updateList(data);
+   }
+ )
+ 
+
+
    
-   var index = gid;
-   var name = tName.value;
-   var number = tNum.value;
-   var range = tRange.value;
-   console.log(name);
-   console.log(number);
-   console.log(range);
-   
-   var newChild = parseForm(name, number, range);
-   console.log("parseForm returned: "+newChild);
-   trackerArr[index] = newChild;
-   localStorage.setItem("storedArr", JSON.stringify(trackerArr));
-   var nodeChild = document.createTextNode(newChild);
-   console.log("b4 childReplace: trackerArr: " + trackerArr);
-   console.log("b4 childReplace: iArr: "+ iArr);
-   trackerList.childNodes[gid+1].replaceChild(nodeChild,
-             trackerList.childNodes[gid+1].childNodes[0]);
-   updateList();
-   console.log("trackerArr aftr updateList lesC: "+trackerArr);
-   console.log("iArr after updateList lesC: "+ iArr);
+  //  var newChild = parseForm(name, number, range);
+  //  console.log("parseForm returned: "+newChild);
+  //  trackerArr[index] = newChild;
+  //  localStorage.setItem("storedArr", JSON.stringify(trackerArr));
+  //  var nodeChild = document.createTextNode(newChild);
+  //  console.log("b4 childReplace: trackerArr: " + trackerArr);
+  //  console.log("b4 childReplace: iArr: "+ iArr);
+  //  trackerList.childNodes[gid+1].replaceChild(nodeChild,
+  //            trackerList.childNodes[gid+1].childNodes[0]);
+  //  updateList();
+  //  console.log("trackerArr aftr updateList lesC: "+trackerArr);
+  //  console.log("iArr after updateList lesC: "+ iArr);
    tSave.removeEventListener("click",lesClose,false);
    tCancel.removeEventListener("click",lecClose,false);
    tDialog.close();
@@ -180,15 +191,14 @@ var doClose = () =>{
   }
 
 function lEdit(lid) {
-  editId = lid - 1;
-  console.log("edit id is " + editId)
+  editId = lid -1;
+  console.log("clicked on " + editId);
   tDialog.showModal();
   $.post("/trackeredit",
     {
       "editId": editId
     },
     function(data) {
-      console.log("edit data: ", data  )
       tName.value = data.name
       tNum.value = data.number;
       tRange.value = data.range;
@@ -329,7 +339,7 @@ var updateList = (data) => {
   for(var i = 0; i < data.length; i++) {
     var listElem = document.createElement("li");
     console.log("adding data at :" + i);
-    listElem.appendChild(document.createTextNode("Name: " + data[i].name + "T #: " + data[i].number + "Range: " + data[i].range));
+    listElem.appendChild(document.createTextNode("Name: " + data[i].name + " T #: " + data[i].number + " Range: " + data[i].range));
 
     var bEdit = document.createElement("button");
     var bDelete = document.createElement("button");    
