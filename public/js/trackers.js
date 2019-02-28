@@ -336,8 +336,8 @@ function getRange(lid){
 
 var updateList = (data) => {
   var i;
-  for(i=0;i<trackerlist.childNodes.length;i++){
-    trackerlist.removeChild(trackerlist.childNodes[i]);
+  for(i=0;i<trackerList.childNodes.length;i++){
+    trackerList.removeChild(trackerList.childNodes[i]);
   }
   $("#trackerList").html(" ");
   for(var i = 0; i < data.length; i++) {
