@@ -340,6 +340,7 @@ var updateList = (data) => {
     trackerList.removeChild(trackerList.childNodes[i]);
     }());
   }
+  console.log("Child count after strict delete(should be 0): "+trackerList.childNodes.length);
   $("#trackerList").html(" ");
   for(var i = 0; i < data.length; i++) {
     (function(){
