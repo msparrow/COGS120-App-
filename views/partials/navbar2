@@ -1,0 +1,31 @@
+<div class="body-back">
+  <div class="masthead pdng-stn1">
+    <div id="menu" class="panel" role="navigation">
+      <div class="wrap-content">
+        <div class="profile-menu text-center">
+
+<!-- navbar -->
+
+            <div class="pro-menu">
+              <div class="logo">
+                <li><a class=" link link--yaku  active" href="/homepage">Map</a></li>
+                <li><a class=" link link--yaku" href="/faq"><span>Q&A</a></li>
+                <hr>
+                <li><a class=" link link--yaku" href="/login"><span>Sign Out</a></li>
+              </div>
+        
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-box wrap push" id="home">
+      <div class="menu-notify">
+        <div class="profile-left">
+          <a href="#menu" class="menu-link"><i class="fa fa-list-ul"></i></a>
+        </div>
+          <div class="Profile-mid">
+          <h1 class="pro-link" style ="color:#ffffff;" style="font-family:arial;">STAY</h1>
+        </div>
+            </div>
+          </div>
