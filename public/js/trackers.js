@@ -340,10 +340,12 @@ var updateList = (data) => {
   
   console.log("Update list found "+trackerList.childNodes.length+" trackers");
   console.log("trackerList children: "+ toString(trackerList.childNodes));
-  for(var i=0;i<trackerList.childNodes.length;i++){
-    (function(){
-    trackerList.removeChild(trackerList.childNodes[i]);
-    }());
+      for(var i = trackerList.childNodes.length-1;i>0;i--){
+       (function(){
+       var index = i;
+      
+       trackerList.removeChild(trackerList.childNodes[index]);
+       }());
   }
   console.log("Child count after strict delete(should be 0): "+trackerList.childNodes.length);
   $("#trackerList").html(" ");
