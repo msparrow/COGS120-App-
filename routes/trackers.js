@@ -35,18 +35,16 @@ exports.trackerEdit= function(req, res) {
 }
 
 exports.trackerSaveEdited = function(req, res) {
-    var editedId = req.body.editedID; 
-    var name = req.body.name;
-    var number = req.body.number;
-    var range = req.body.range;
+    var index = req.body.editId; 
+  
     console.log(trackersData);
     var editedData= {
-        "name" : name,
-        "number": number,
-        "range": range
-    }
-    trackersData.splice(editedId, 1, editedData);
-   console.log(trackersData);
+        "name" : req.body.name,
+        "number": req.body.number,
+        "range": req.body.range
+    };
+    trackersData[index] = editedData;
+   //console.log(trackersData);
     res.json(trackersData);
 }
 
