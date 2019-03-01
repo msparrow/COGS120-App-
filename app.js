@@ -36,8 +36,8 @@ app.get("/faq", faq.view);
 app.get("/trackers", trackers.view);
 app.post("/trackers",trackers.post);
 
-app.get("/index2," index2.view);
-app.post("/index2," index2.post);
+app.get("/index2", index2.view);
+app.post("/index2", index2.post);
 
 app.get("/trackerdata", trackers.getData);
 app.post("/trackerdelete", trackers.trackerDelete);
