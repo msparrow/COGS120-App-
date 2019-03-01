@@ -335,7 +335,7 @@ var updateList = (data) => {
   
   console.log("Update list found "+trackerList.childNodes.length+" trackers");
   console.log("trackerList children: "+ toString(trackerList.childNodes));
-  for(var i=1;i<trackerList.childNodes.length;i++){
+  for(var i=0;i<trackerList.childNodes.length;i++){
     (function(){
     trackerList.removeChild(trackerList.childNodes[i]);
     }());
