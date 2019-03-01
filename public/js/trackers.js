@@ -163,7 +163,7 @@ var lecClose = () => {
 
 
 var doClose = () =>{
-   
+   var deleteId = 0;
   // var lid = gid;
   // console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);
   // trackerArr.splice(lid,1);
@@ -217,7 +217,8 @@ function lEdit(lid) {
 
 function lDelete(lid){
   console.log("delete id in ldelete is " + lid );
-  deleteId = lid - 1;
+  
+  var deleteId = lid - 1;
   dDialog.showModal();
   dCancel.addEventListener("click",dcClose,false);
   dOk.addEventListener("click", doClose,false);
@@ -232,6 +233,7 @@ var dcClose = () =>{
 }
 
 var doClose = () =>{
+  var deleteId = 0;
   console.log("deleting it")
   console.log("delete id :" + deleteId);
 
