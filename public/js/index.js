@@ -168,7 +168,7 @@ function initMap() {
                   for(i=0; i<serverData.length; i++){
                   var option = document.createElement("option");
                   console.log("campusCoords[i].name = " + campusCoords[i].name);
-                  option.value = campusCoords[i].name;
+                  option.value = serverData[i].name;
                   option.innerHTML = campusCoords[i].name;
                   sim.add(option);
                   option.addEventListener("click", simulate);
