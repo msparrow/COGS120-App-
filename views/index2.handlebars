@@ -52,9 +52,9 @@
 
    <div class="content">
    
-  <h4 style = "text-align:center">Begin Tracking</h4>
-    <h6 style = "text-align:center">//</h6>
-    <h5 style = "text-align:center">turn on, delete, edit, or turn on a new tracker</h5>
+  <h4 style = "text-align:center">Active Trackers</h4>
+    <!-- <h6 style = "text-align:center">//</h6>-->
+    <h5 style = "text-align:center">Manage trackers</h5>
     <br>
      <center>
      <form class="container">
@@ -63,6 +63,7 @@
   </center>
         <br>
     <center>
+    
     <ul class="container" id="trackerList">
       {{#each trackers}} 
         <li>Name: {{name}} - Tracker#: {{number}} - Range: {{range}}</li>
@@ -75,6 +76,7 @@
   <button class="container"><a href="/homepage">Back to Home</a></button>
   <!--The add tracker window dialog-->
   </center>
+  
   <dialog id="tDialog" style="text-align:left;">
     <form>
       <h4 style = "text-align:center">Tracker Info</h6>
@@ -112,7 +114,6 @@
   
   <!--The cancel confirm dialog-->
   
-Replace the value of the key parameter with your own API key. -->
      <div class="map" id="map"></div>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ldu2hMxOokMY2yP59Ser5FoJa_kWkto&callback=initMap">
