@@ -28,7 +28,7 @@ var trackers = require ("./routes/trackers")
 var faq = require("./routes/faq")
 var register = require ("./routes/register")
 var edit = require("./routes/edit")
-var trackersB = require("./routes/index2")
+var index2 = require("./routes/index2")
 
 app.get("/", login.view);
 app.get("/homepage", homepage.view);
