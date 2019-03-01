@@ -45,6 +45,7 @@ app.post("/editSave",trackers.trackerSaveEdited)
 app.post("/trackeredit/", trackers.trackerEdit);
 app.get("/edit", edit.view);
 app.get("/register", register.view)
+app.get("/login", login.view);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
