@@ -60,9 +60,10 @@
 
    <div class="content">
    
-  <h4 style = "text-align:center">Active Trackers</h4>
+   <center>
+  <h3 style = "text-align:center">Active Trackers</h3>
+  </center>
     <!-- <h6 style = "text-align:center">//</h6>-->
-    <h5 style = "text-align:center">Manage trackers</h5>
     <br>
      <center>
      <form class="container">
@@ -72,7 +73,7 @@
         <br>
     <center>
     
-    <ul class="container" id="trackerList">
+    <ul class="container" id="trackerList" style = "border:3px solid black">
       {{#each trackers}} 
         <li>Name: {{name}} - Tracker#: {{number}} - Range: {{range}}</li>
       {{/each}}
