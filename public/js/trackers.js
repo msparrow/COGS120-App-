@@ -436,7 +436,9 @@ function parseForm(name, number, range){
 function init() {  
   addButton.addEventListener("click",openDialog,false);
   $.get("/trackerData", (serverData) => {
+     (function(){
     updateList(serverData);
+          }());
   });
 
   var testid = 100;
