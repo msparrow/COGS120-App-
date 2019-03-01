@@ -145,7 +145,7 @@ function initMap() {
                   });
                   
                    }
-         });
+        
    
  
           // Add the circle for this city to the map.
@@ -157,9 +157,10 @@ function initMap() {
             fillOpacity: 0.35,
             map: map,
             center: myLatLng,
-            radius: 1500
+            radius: (serverData[0].range * 200)
           });
-          
+         });
+          //1500
           $.get("/trackerData",
         (serverData) =>{
                    console.log("Select finder found "+serverData.length+" trackers");
