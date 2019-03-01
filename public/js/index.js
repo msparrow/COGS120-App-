@@ -157,7 +157,7 @@ function initMap() {
             fillOpacity: 0.35,
             map: map,
             center: myLatLng,
-            radius: (serverData[0] * 200)
+            radius: (serverData[0].range * 200)
           });
          });
           //1500
