@@ -165,16 +165,18 @@ function initMap() {
                    console.log("Select finder found "+serverData.length+" trackers");
                   var i;
                   var sim = document.getElementById("sim");
+                  
                   for(i=0; i<serverData.length; i++){
                   var option = document.createElement("option");
                   console.log("campusCoords[i].name = " + campusCoords[i].name);
                   option.value = serverData[i].name;
                   option.innerHTML = serverData[i].name+"(Location: "+campusCoords[i].name+")";
                   sim.add(option);
-                  option.addEventListener("click", simulate);
+                  
 
                   
                    }
+                sim.addEventListener('change',simulate,false);
          });
         
       }
