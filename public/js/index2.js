@@ -1,3 +1,4 @@
+/*Functionality adapted from some code I (Matthew Sparrow) wrote last fall, link to site here https://crudhw-84e30.firebaseapp.com/crud.html*/
 
 //Initial page elements
 
@@ -18,6 +19,8 @@ var tCancel = document.getElementById("tCancel");
 var dDialog = document.getElementById("dDialog");
 var dCancel = document.getElementById("dCancel");
 var dOk = document.getElementById("dOk");
+var editId;
+var deleteId;
 
 
 var trackerArr = [];
@@ -32,6 +35,7 @@ function updateTextInput(val) {
 }
 
 var openDialog = () => {
+  console.log("opening dialog");
   tName.value = "";
   tNum.value = "";
   tRange.value = "G";
@@ -45,53 +49,21 @@ var openDialog = () => {
 var msClose = () => {
  
   console.log("Generating new entry for tracker list");
-  
-  // getting values from input field and putting into these variables 
-  var name = tName.value;
-  var number = tNum.value;
-  var range = tRange.value;
-  console.log(name);
 
     //Send the new enterd data to the server
   $.post("/trackers",
     {
-      "name": name,
-      "number":number,
-      "range":range,
+      "name": tName.value,
+      "number": tNum.value,
+      "range":tRange.value,
     },
     function(data) {
       //get the updated json data and then render on the tracker page
       console.log(data);
-      // $("#trackerList").html(" ");
-      trackerArr = data;
       updateList(data);
     }
   );
   
-
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/trackers",
-  //   dataType: "json",
-  //   data: {
-  //     name: name,
-  //     number: number,
-  //     range: range, 
-  //   },
-  //   success: function() {
-  //     console.log("Alhamdulillah");
-  //   },
-  //   error: function() {
-  //     console.log("error");
-  //   }
-  // })
-  
-  // var arrEntry = parseForm(name, number, range);
-  // console.log("Generating entry, parseForm returned: "+arrEntry);
-  
-  // trackerArr.push(arrEntry);
-  // localStorage.setItem("storedArr", JSON.stringify(trackerArr));
-  // updateList();
   tSave.removeEventListener("click",msClose,false);
   tCancel.removeEventListener("click",mcClose,false);
   tDialog.close();
@@ -101,16 +73,17 @@ var msClose = () => {
 var mcClose = () => {
   tName.value = "";
   tNum.value = "";
-  tRange.value = "G";
+  tRange.value = "";
   tSave.removeEventListener("click",msClose,false);
   tCancel.removeEventListener("click",mcClose,false);
   tDialog.close();
 }
-function lesClose(lid){
+
+
+function lesClose(){
   //e.preventDefault();
 //function lesClose(lid){
-   var editId = lid-1;
-   console.log("edit id " + editId);
+  console.log(`sending data for id ${editId}`);
 
    $.post("/editSave",
    {
@@ -126,25 +99,10 @@ function lesClose(lid){
    }
  );
  
-
-
-   
-  //  var newChild = parseForm(name, number, range);
-  //  console.log("parseForm returned: "+newChild);
-  //  trackerArr[index] = newChild;
-  //  localStorage.setItem("storedArr", JSON.stringify(trackerArr));
-  //  var nodeChild = document.createTextNode(newChild);
-  //  console.log("b4 childReplace: trackerArr: " + trackerArr);
-  //  console.log("b4 childReplace: iArr: "+ iArr);
-  //  trackerList.childNodes[gid+1].replaceChild(nodeChild,
-  //            trackerList.childNodes[gid+1].childNodes[0]);
-  //  updateList();
-  //  console.log("trackerArr aftr updateList lesC: "+trackerArr);
-  //  console.log("iArr after updateList lesC: "+ iArr);
-   tSave.removeEventListener("click",lesClose,false);
-   tCancel.removeEventListener("click",lecClose,false);
-   tDialog.close();
-   console.log("List edit closed on save");
+  tSave.removeEventListener("click",lesClose,false);
+  tCancel.removeEventListener("click",lecClose,false);
+  tDialog.close();
+  console.log("List edit closed on save");
 
 }
 
@@ -152,7 +110,7 @@ var lecClose = () => {
   
   tName.value = "";
   tNum.value = "";
-  tRange.value = "G";
+  tRange.value = "";
   tSave.removeEventListener("click",lesClose,false);
   tCancel.removeEventListener("click",lecClose,false);
   tDialog.close();
@@ -162,16 +120,6 @@ var lecClose = () => {
 
 
 var doClose = () =>{
-   var deleteId = 0;
-  // var lid = gid;
-  // console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);
-  // trackerArr.splice(lid,1);
-  // localStorage.setItem("storedArr", JSON.stringify(trackerArr));
-  // updateList();
-  // dCancel.removeEventListener("click",dcClose,false);
-  // dOk.removeEventListener("click", doClose,false);
-  // dDialog.close();
-  // console.log("Delete dialog closed on Ok");
 
   $.post("/trackerdelete",
     {
@@ -187,10 +135,9 @@ var doClose = () =>{
   );
   }
 
-function lEdit(lid) {
-  var editId = lid-1;
+function lEdit(id) {
+  editId = id;
 
-  console.log("clicked on " + editId);
   tDialog.showModal();
   $.post("/trackeredit",
     {
@@ -200,8 +147,7 @@ function lEdit(lid) {
       tName.value = data.name
       tNum.value = data.number;
       tRange.value = data.range;
-      tSave.addEventListener("click",function()
-                          {lesClose(lid);},false);
+      tSave.addEventListener("click",lesClose,false);
       tCancel.addEventListener("click",lecClose,false);
     }
   );
@@ -214,10 +160,10 @@ function lEdit(lid) {
   dDialog.showModal();
 }*/
 
-function lDelete(lid){
-  console.log("delete id in ldelete is " + lid );
-  
-  var deleteId = lid - 1;
+function lDelete(id){
+  deleteId = id;
+  console.log("delete id in ldelete is " + deleteId );
+
   dDialog.showModal();
   dCancel.addEventListener("click",dcClose,false);
   dOk.addEventListener("click", doClose,false);
@@ -232,9 +178,6 @@ var dcClose = () =>{
 }
 
 var doClose = () =>{
-  var deleteId = 0;
-  console.log("deleting it")
-  console.log("delete id :" + deleteId);
 
   $.post("/trackerdelete",
     {
@@ -249,16 +192,6 @@ var doClose = () =>{
     }
   );
 
-
-  // var lid = gid;
-  // console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);
-  // trackerArr.splice(lid,1);
-  // localStorage.setItem("storedArr", JSON.stringify(trackerArr));
-  // updateList();
-  // dCancel.removeEventListener("click",dcClose,false);
-  // dOk.removeEventListener("click", doClose,false);
-  // dDialog.close();
-  // console.log("Delete dialog closed on Ok");
 }
 
 function getName(lid){
@@ -329,101 +262,66 @@ function getRange(lid){
 }
 
 
-//var listScript = document.createElement("script");
-//listScript.src = "./listcontrol.js";
-//document.head.appendChild(listScript);
-
-//BEGINNING OF listcontrol.js
-
 var updateList = (data) => {
-  
-  console.log("Update list found "+trackerList.childNodes.length+" trackers");
-  console.log("trackerList children: "+ toString(trackerList.childNodes));
-      for(var i = trackerList.childNodes.length-1;i>0;i--){
-       (function(){
-       var index = i;
-      
-       trackerList.removeChild(trackerList.childNodes[index]);
-       }());
-  }
-  console.log("Child count after strict delete(should be 0): "+trackerList.childNodes.length);
-  $("#trackerList").html(" ");
-  for(var i = 0; i < data.length; i++) {
-    (function(){
-    var listElem = document.createElement("li");
-    console.log("adding data at :" + i);
-    listElem.appendChild(document.createTextNode("Name: " + data[i].name + " T #: " + data[i].number + " Range: " + data[i].range));
 
+  $("#trackerList").html(" ");
+  var allTrackers = document.getElementById("trackerList");
+  for(var i = 0; i < data.length; i++) {
+    (function(i){
+      var listElem = document.createElement("li");
+      listElem.appendChild(document.createTextNode("Name: " + data[i].name + " T #: " + data[i].number + " Range: " + data[i].range + "  "));
+      allTrackers.appendChild(listElem);
+    }(i));
+  }
+
+  for(var i = 0; i < allTrackers.children.length; i++) {
+    // add Edit button for the given tracker
     var bEdit = document.createElement("button");
-    var bDelete = document.createElement("button");    
     bEdit.innerHTML = " Edit";
+    bEdit.className = "editTrackerBtn";
+    allTrackers.children[i].appendChild(bEdit);
+
+    var bDelete = document.createElement("button");
     bDelete.innerHTML = " Delete";
-    bEdit.setAttribute("id", "me"+i);
-    bDelete.setAttribute("id","md"+i);
-    listElem.setAttribute("id",i);
-    console.log("Edit and Delete buttons added with ID (me/md)"+i);
-    bEdit.addEventListener("click",lEdit.bind(this,i),false);
+    bDelete.className = "deleteTrackerBtn";
+    allTrackers.children[i].appendChild(bDelete);
+
+  }
+
+  //adding event listeners for edit buttons
+  var editBtns = document.getElementsByClassName("editTrackerBtn");
+  var i;
+  
+  for (i = 0; i < editBtns.length; i++) {
+    (function(i) {
+      console.log(`i is ${i}`);
+      console.log("adding click listenetr")
+      editBtns[i].onclick = function() {
+        console.log(`going to edit for ${i}`);
+        lEdit(i);
+      }
+    })(i);
     
-    bDelete.addEventListener("click",function()
-                            {lDelete(i);},false);
+  }
+
+  //adding event listeners for delete buttons
+  var deleteBtns = document.getElementsByClassName("deleteTrackerBtn");
+  var i;
+  
+  for (i = 0; i < deleteBtns.length; i++) {
+    (function(i) {
+      console.log(`i is ${i}`);
+      console.log("adding click listenetr")
+      deleteBtns[i].onclick = function() {
+        console.log(`going to delete for ${i}`);
+        lDelete(i);
+      }
+    })(i);
     
-    listElem.appendChild(bEdit);
-    listElem.appendChild(bDelete);
-    trackerList.appendChild(listElem);
-    }());
   }
 }
 
 
-// var updateList = () =>{
-    
-//     iArr.splice(0,iArr.length);
-   
-//     for(var i = trackerList.childNodes.length-1;i>0;i--){
-//       (function(){
-//       var index = i;
-      
-//       trackerList.removeChild(trackerList.childNodes[index]);
-//       }());
-//     }
-  
-//     console.log("trackerList child length: " + trackerList.childNodes.length);
-    
-//     trackerList = document.getElementById("trackerList");
-  
-//     for(var i=0;i<trackerArr.length;i++){
-//     (function(){
-      
-//     var index = i;
-//     iArr.push(index);
-    
-//     var listElem = document.createElement("li");
-//     listElem.appendChild(document.createTextNode(trackerArr[index]));
-    
-    // var bEdit = document.createElement("button");
-    // var bDelete = document.createElement("button");    
-    // bEdit.innerHTML = " Edit";
-    // bDelete.innerHTML = " Delete";
-    // bEdit.setAttribute("id", "me"+index);
-    // bDelete.setAttribute("id","md"+index);
-    // listElem.setAttribute("id",index);
-    
-    // bEdit.addEventListener("click",function()
-    //                       {lEdit(iArr[index]);},false);
-    
-    // bDelete.addEventListener("click",function()
-    //                         {lDelete(iArr[index]);},false);
-    
-    // listElem.appendChild(bEdit);
-    // listElem.appendChild(bDelete);
-      
-//     console.log("Updating tracker list: "+trackerArr[i]);
-    
-   // trackerList.appendChild(listElem);
-//     }());
-//   }
-  
-// }
   
 function parseForm(name, number, range){
   
@@ -443,7 +341,7 @@ function init() {
   addButton.addEventListener("click",openDialog,false);
   $.get("/trackerData", (serverData) => {
      (function(){
-    updateList(serverData);
+        updateList(serverData);
           }());
   });
 
@@ -451,52 +349,6 @@ function init() {
   var flag = 0;
   console.log("First child of trackerlist"+trackerList.childNodes[0]);
   
-  
-  /*
-  for(var i=0;i<trackerArr.length;i++){
-    (function(){
-    
-      var index = i;
-      
-      iArr.push(index);
-      
-      console.log("Init loop i: "+index);
-      
-      var listElem = document.createElement("li");
-      listElem.appendChild(document.createTextNode(trackerArr[index]));
-      
-      var bEdit = document.createElement("button");
-      var bDelete = document.createElement("button");    
-      bEdit.innerHTML = " Edit";
-      bDelete.innerHTML = " Delete";
-      bEdit.setAttribute("id", "me"+index);
-      bDelete.setAttribute("id","md"+index);
-      listElem.setAttribute("id",index);
-    
-      bEdit.addEventListener("click",function()
-                            {lEdit(i);},false);
-      
-      console.log("Adding delete listener for listElem.id: "+listElem.id);
-      bDelete.addEventListener("click",function()
-                              {lDelete(iArr[index]);},false);
-      console.log("Adding delete listener for listElem.id: "+listElem.id);
-      
-      listElem.appendChild(bEdit);
-      listElem.appendChild(bDelete);
-      
-      trackerList.appendChild(listElem);
-      console.log("listElem children: "+listElem.childNodes +"length:"+listElem.childNodes.length);
-      console.log("Tracker List looks like (i="+i+"): "+trackerArr[index]);
-      console.log("This list element got the ID of"+listElem.id);
-      //var buttons = document.getElementsByTagName('button');
-      //console.log(buttons);
-    }());
-  }
-  localStorage.setItem("storedArr", JSON.stringify(trackerArr));
-  console.log("iArr after init: "+iArr);
-  console.log("Final trackerList node count: " + trackerList.childNodes.length);
-  console.log("Head node of trackerList: " + trackerList.childNodes[0]);
-  */
 }
 
 var sim = document.getElementById("sim");
@@ -645,7 +497,7 @@ function initMap() {
                   });
                   
                    }
-         });
+        
    
  
           // Add the circle for this city to the map.
@@ -657,24 +509,27 @@ function initMap() {
             fillOpacity: 0.35,
             map: map,
             center: myLatLng,
-            radius: 1500
+            radius: (serverData[0].range * 200)
           });
-          
+         });
+          //1500
           $.get("/trackerData",
         (serverData) =>{
                    console.log("Select finder found "+serverData.length+" trackers");
                   var i;
                   var sim = document.getElementById("sim");
+                  
                   for(i=0; i<serverData.length; i++){
                   var option = document.createElement("option");
                   console.log("campusCoords[i].name = " + campusCoords[i].name);
-                  option.value = campusCoords[i].name;
-                  option.innerHTML = campusCoords[i].name;
+                  option.value = serverData[i].name;
+                  option.innerHTML = serverData[i].name+"(Location: "+campusCoords[i].name+")";
                   sim.add(option);
-                  option.addEventListener("click", simulate);
+                  
 
                   
                    }
+                sim.addEventListener('change',simulate,false);
          });
         
       }
