@@ -19,8 +19,7 @@ var tCancel = document.getElementById("tCancel");
 var dDialog = document.getElementById("dDialog");
 var dCancel = document.getElementById("dCancel");
 var dOk = document.getElementById("dOk");
-var deleteId;
-var editId;
+
 
 var trackerArr = [];
 
@@ -108,9 +107,10 @@ var mcClose = () => {
   tCancel.removeEventListener("click",mcClose,false);
   tDialog.close();
 }
-var lesClose = (e) =>{
-  e.preventDefault();
+function lesClose(lid){
+  //e.preventDefault();
 //function lesClose(lid){
+   var editId = lid-1;
    console.log("edit id " + editId);
 
    $.post("/editSave",
@@ -163,6 +163,7 @@ var lecClose = () => {
 
 
 var doClose = () =>{
+   
   // var lid = gid;
   // console.log("Splicing lid "+lid+" trackerArr[lid]: "+trackerArr[lid]);
   // trackerArr.splice(lid,1);
@@ -188,7 +189,8 @@ var doClose = () =>{
   }
 
 function lEdit(lid) {
-  editId = lid -1;
+  var editId = lid-1;
+
   console.log("clicked on " + editId);
   tDialog.showModal();
   $.post("/trackeredit",
@@ -199,7 +201,8 @@ function lEdit(lid) {
       tName.value = data.name
       tNum.value = data.number;
       tRange.value = data.range;
-      tSave.addEventListener("click",lesClose,false);
+      tSave.addEventListener("click",function()
+                          {lesClose(lid);},false);
       tCancel.addEventListener("click",lecClose,false);
     }
   );
