@@ -35,6 +35,8 @@ function updateTextInput(val) {
 }
 
 var openDialog = () => {
+            ga("send", "event", 'button', 'clicked');
+
   console.log("opening dialog");
   tName.value = "";
   tNum.value = "";
