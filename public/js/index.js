@@ -188,6 +188,7 @@ function initMap() {
     // You can use “this” to refer to the selected element.
     if(!event.target.value) alert('Please Select One');
     else alert('You selected tracker' + event.target.value ); 
+    console.log('You selected tracker' + event.target.value);
 }
    
 
