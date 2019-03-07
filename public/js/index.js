@@ -161,7 +161,7 @@ function initMap() {
           });
          });
           //1500
-          $.get("/trackerData",
+ $.get("/trackerData",
         (serverData) =>{
                    console.log("Select finder found "+serverData.length+" trackers");
                   var i;
@@ -177,9 +177,18 @@ function initMap() {
 
                   
                    }
-                sim.addEventListener('change',simulate,false);
+                document.addEventListener('DOMContentLoaded',function() {
+    document.querySelector('select[name="sim"]').onchange=myEventHandler;
+          },false);
+
          });
-        
-      }
+     } 
+                                                
+   function changeEventHandler(event) {
+    // You can use “this” to refer to the selected element.
+    if(!event.target.value) alert('Please Select One');
+    else alert('You selected tracker' + event.target.value ); 
+}
+   
 
 
