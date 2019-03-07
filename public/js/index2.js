@@ -384,6 +384,9 @@ var simulate = () =>{
   var alarmset = 0;
   var i = 0;
   
+  var index = sim.selectedIndex;
+  console.log('Simulate found selectedIndex: '+index);
+  
   var range = 0;
           
   $.get("/trackerData",
@@ -391,7 +394,7 @@ var simulate = () =>{
             console.log("server data");
             console.log(serverData);
             if(serverData.length > 0){
-            range = serverData[0].range;
+            range = serverData[index].range;
             }
             else{
                 document.querySelector('input[type=text]').value = "No Active Trackers";
@@ -406,7 +409,7 @@ var simulate = () =>{
   
   setInterval(function(){
     if(i<=range){
-    document.querySelector('input[type=text]').value = "Tracker ("+ serverData[0].name+"): "+ ++i + "/"+ range + "miles";
+    document.querySelector('input[type=text]').value = "Tracker ("+ serverData[index].name+"): "+ ++i + "/"+ range + "miles";
     }
   }, 1000);
   
