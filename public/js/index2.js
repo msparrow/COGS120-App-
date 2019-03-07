@@ -23,7 +23,7 @@ var editId;
 var deleteId;
 var sim = document.getElementById("sim");
 var go = document.createElement("button");
-var simarea = document.getElementById("simarea");
+var simarea = document.getElementById("simarea2");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
 var simtext = document.createElement("input");
