@@ -21,6 +21,12 @@ var dCancel = document.getElementById("dCancel");
 var dOk = document.getElementById("dOk");
 var editId;
 var deleteId;
+var sim = document.getElementById("sim");
+var go = document.createElement("button");
+var simarea = document.getElementById("simarea");
+var slider = document.createElement("input");
+var alert = document.createElement("img");
+var simtext = document.createElement("input");
 
 
 var trackerArr = [];
@@ -353,12 +359,6 @@ function init() {
   
 }
 
-var sim = document.getElementById("sim");
-var go = document.createElement("button");
-var simarea = document.getElementById("simarea");
-var slider = document.createElement("input");
-var alert = document.createElement("img");
-var simtext = document.createElement("input");
 simtext.style.display = 'none';
 simarea.appendChild(simtext);
 
