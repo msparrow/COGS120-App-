@@ -359,6 +359,7 @@ var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
 var simtext = document.createElement("input");
+simtext.setAttribute("value", " ");
 simtext.style.display = 'none';
 simarea.appendChild(simtext);
 
