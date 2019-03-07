@@ -21,6 +21,9 @@ var wait = () =>{
 }
 
 var simulate = () =>{
+  
+  var value = show_selected();
+          
   simarea.removeChild(simtext);
   //simarea.removeChild(slider);
   simtext.setAttribute("type", "text");
@@ -31,6 +34,11 @@ var simulate = () =>{
   var i = 0;
   
   var range = 0;
+  
+   
+  
+
+document.getElementById('btn').addEventListener('click', show_selected);
           
   $.get("/trackerData",
         (serverData) =>{
@@ -161,7 +169,7 @@ function initMap() {
           });
          });
           //1500
- $.get("/trackerData",
+          $.get("/trackerData",
         (serverData) =>{
                    console.log("Select finder found "+serverData.length+" trackers");
                   var i;
@@ -177,19 +185,19 @@ function initMap() {
 
                   
                    }
-                document.addEventListener('DOMContentLoaded',function() {
-    document.querySelector('select[name="sim"]').onchange=myEventHandler;
-          },false);
-
+                sim.addEventListener('change',simulate,false);
          });
-     } 
-                                                
-   function myEventHandler(event) {
-    // You can use “this” to refer to the selected element.
-    if(!event.target.value) alert('Please Select One');
-    else alert('You selected tracker' + event.target.value ); 
-    console.log('You selected tracker' + event.target.value);
-}
+        
+      }
+
+"use strict";
+  function show_selected() {
+    var selector = document.getElementById('sim');
+    var value = selector[selector.selectedIndex].value;
+    console.log(value);
+    return value;
+
+  }
    
 
 
