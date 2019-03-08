@@ -45,7 +45,6 @@
 	font-weight:bold !important;
 	font-family:Arial !important;
  }
-
 	</style> 
 {{> facebook}}
 	<script src="/js/facebook.js"></script>
@@ -55,7 +54,6 @@
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
 ga('create', 'UA-135643788-1', 'auto');
 ga('send', 'pageview');
 </script>
@@ -135,11 +133,12 @@ ga('send', 'pageview');
   <!--The cancel confirm dialog-->
   
 
-
+<script src="/js/index2.js"></script>
      <div class="map" id="map"></div>
-
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ldu2hMxOokMY2yP59Ser5FoJa_kWkto&callback=initMap">
 </container>
-
+</script>
       </div>
   <select id="sim">
    	<option value="Select a Tracker">Select a Tracker</option>
@@ -149,11 +148,9 @@ ga('send', 'pageview');
     
     </center>
     
-    <div class="container" id="simarea2"></div>
+    <div class="container" id="simarea"></div>
     <hr>
-    <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ldu2hMxOokMY2yP59Ser5FoJa_kWkto&callback=initMap"></script>
-<script src="/js/index2.js"></script>
+
   
     </body>
 </html>
