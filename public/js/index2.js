@@ -384,7 +384,7 @@ var simulate = () =>{
   var alarmset = 0;
   var i = 0;
   
-  var index = sim.selectedIndex;
+  var index = sim.selectedIndex - 1;
   console.log('Simulate found selectedIndex: '+index);
   
   var range = 0;
