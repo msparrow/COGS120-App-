@@ -34,7 +34,7 @@ var simulate = () =>{
   
   var range = 0;
           
-  var index = sim.selectedIndex; 
+  var index = sim.selectedIndex - 1; 
   console.log('Simulate found selectedIndex: '+index);
   
    
