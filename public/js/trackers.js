@@ -1,4 +1,4 @@
-/*Functionality adapted from some code I (Matthew Sparrow) wrote last fall, link to site here https://crudhw-84e30.firebaseapp.com/crud.html*/
+/*Some functionality adapted from code I (Matthew Sparrow) wrote last fall, link to site here https://crudhw-84e30.firebaseapp.com/crud.html*/
 
 //Initial page elements
 
