@@ -13,10 +13,8 @@ p {margin: 0;padding: 0;}
 body{	
 	background: #003b64;
 	font-family: 'Open Sans', sans-serif;
-	max-width: 300px;
-	margin: auto;
-	margin-left: auto;
-	padding-left: auto;
+	margin:0;
+	padding:0;
 }
 body p{
   font-family: 'Open Sans', sans-serif;
