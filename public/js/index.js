@@ -9,6 +9,7 @@ var addarea = document.getElementById("addtrack");
 var addtrack = document.createElement("input");
 simtext.style.display = 'none';
 simarea.appendChild(simtext);
+addarea.style.text-align = 'center';
 
 
 alert.setAttribute("style", "width: 260px");
