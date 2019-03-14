@@ -194,6 +194,7 @@ function initMap() {
                 if(serverData.length != 0){
                     addtrack.outerHTML = "";      
                     addtrack.innerHTML = "";
+                    addtrack.style = 'none';
                 }
                 else{
                     addtrack.style.display = 'block';       
