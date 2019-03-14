@@ -128,7 +128,7 @@ function initMap() {
         addtrack.type = 'button';
         addtrack.href = 'https://a9-stay.herokuapp.com/trackers" id="addtrack';
         addtrack.value = 'Add a Tracker';
-        addarea.appendchild(addtrack);
+        addarea.appendChild(addtrack);
           
         var campusCoords = {
           0: {
