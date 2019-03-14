@@ -12,6 +12,17 @@ simarea.appendChild(simtext);
 
 alert.setAttribute("style", "width: 260px");
 
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
+
 function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
 }
@@ -192,9 +203,7 @@ function initMap() {
                    }
                 sim.addEventListener('change',simulate,false);
                 if(serverData.length != 0){
-                    addtrack.outerHTML = "";      
-                    addtrack.innerHTML = "";
-                    addtrack.style = 'none';
+                    addtrack.remove();
                 }
                 else{
                     addtrack.style.display = 'block';       
