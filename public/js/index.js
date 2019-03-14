@@ -125,7 +125,7 @@ function initMap() {
         var ercLatLng = {lat:32.8853 , lng:-117.2422 };
         var warrLatLng = {lat:32.8812 , lng:-117.2341 };
         var sixLatLng = {lat: 32.8782, lng:-117.2318 };
-        addtrack.type = 'button';
+        addtrack.type = 'submit';
         addtrack.value = 'Add a Tracker';
         addarea.appendChild(addtrack);
           
