@@ -54,7 +54,7 @@ var simulate = () =>{
    
   
 
-document.getElementById('btn').addEventListener('click', show_selected);
+//document.getElementById('btn').addEventListener('click', show_selected);
           
   $.get("/trackerData",
         (serverData) =>{
