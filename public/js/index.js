@@ -192,10 +192,10 @@ function initMap() {
                    }
                 sim.addEventListener('change',simulate,false);
                 if(serverData.length != 0){
-                    addtrack.setAttribute('display','none');         
+                    addtrack.style.display = 'none';       
                 }
                 else{
-                    addtrack.setAttribute('display','block');         
+                    addtrack.style.display = 'block';       
                 }
          });
         
