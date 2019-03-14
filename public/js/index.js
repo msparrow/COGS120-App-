@@ -5,6 +5,7 @@ var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
 var simtext = document.createElement("input");
+var addtrack = document.getElementById("addtrack");
 simtext.style.display = 'none';
 simarea.appendChild(simtext);
 
@@ -112,6 +113,8 @@ function initMap() {
         var ercLatLng = {lat:32.8853 , lng:-117.2422 };
         var warrLatLng = {lat:32.8812 , lng:-117.2341 };
         var sixLatLng = {lat: 32.8782, lng:-117.2318 };
+          
+          
         var campusCoords = {
           0: {
             name: "Revelle",
@@ -188,6 +191,12 @@ function initMap() {
                   
                    }
                 sim.addEventListener('change',simulate,false);
+                if(serverData.length != 0){
+                    addtrack.setAttribute('display','none');         
+                }
+                else{
+                    addtrack.setAttribute('display','block');         
+                }
          });
         
       }
