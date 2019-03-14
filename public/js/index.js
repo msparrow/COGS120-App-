@@ -193,6 +193,7 @@ function initMap() {
                 sim.addEventListener('change',simulate,false);
                 if(serverData.length != 0){
                     addtrack.outerHTML = "";      
+                    addtrack.innerHTML = "";
                 }
                 else{
                     addtrack.style.display = 'block';       
