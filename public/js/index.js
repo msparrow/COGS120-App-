@@ -5,6 +5,7 @@ var simarea = document.getElementById("simarea");
 var slider = document.createElement("input");
 var alert = document.createElement("img");
 var simtext = document.createElement("input");
+var addarea = document.getElementById("addtrack");
 var addtrack = document.createElement("input");
 simtext.style.display = 'none';
 simarea.appendChild(simtext);
@@ -127,7 +128,7 @@ function initMap() {
         addtrack.type = 'button';
         addtrack.href = 'https://a9-stay.herokuapp.com/trackers" id="addtrack';
         addtrack.value = 'Add a Tracker';
-        document.appendchild(addtrack);
+        addarea.appendchild(addtrack);
           
         var campusCoords = {
           0: {
