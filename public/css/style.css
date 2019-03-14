@@ -11,10 +11,12 @@ h1, h2, h3 {
 ul, ol, li{margin: 0; padding: 0;}
 p {margin: 0;padding: 0;}
 body{	
-background: #7eb3c3;
+	background: #003b64;
 	font-family: 'Open Sans', sans-serif;
-	margin:0;
-	padding:0;
+	max-width: 300px;
+	margin: auto;
+	margin-left: auto;
+	padding-left: auto;
 }
 body p{
   font-family: 'Open Sans', sans-serif;
