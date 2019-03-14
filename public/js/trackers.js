@@ -278,11 +278,13 @@ var updateList = (data) => {
     // add Edit button for the given tracker
     var bEdit = document.createElement("button");
     bEdit.innerHTML = " Edit";
+    bEdit.color = white;
     bEdit.className = "editTrackerBtn";
     allTrackers.children[i].appendChild(bEdit);
 
     var bDelete = document.createElement("button");
     bDelete.innerHTML = " Delete";
+    bDelete.color = white;
     bDelete.className = "deleteTrackerBtn";
     allTrackers.children[i].appendChild(bDelete);
 
