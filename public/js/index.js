@@ -126,7 +126,6 @@ function initMap() {
         var warrLatLng = {lat:32.8812 , lng:-117.2341 };
         var sixLatLng = {lat: 32.8782, lng:-117.2318 };
         addtrack.type = 'button';
-        addtrack.href = 'https://a9-stay.herokuapp.com/trackers" id="addtrack';
         addtrack.value = 'Add a Tracker';
         addarea.appendChild(addtrack);
           
