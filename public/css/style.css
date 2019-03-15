@@ -880,7 +880,7 @@ background: #020202 url(../images/search.png) no-repeat 17px 8px;
 	outline:none;
 	font-size:13px;
 	color: #777;
-		background: url(../images/arrow1.png) no-repeat 93% center #ffffff;
+		//background: url(../images/.png) no-repeat 93% center #ffffff;
 	width:100%;
 	    padding: 12px 8px;
     -webkit-appearance: none;
@@ -893,7 +893,6 @@ font-family: 'Open Sans', sans-serif;
 	outline:none;
 	font-size:13px;
 	color: #777;
-	 background: url(../images/arrow1.png) no-repeat 93% center #ffffff;
 	width:100%;
 	    padding: 12px 8px;
 font-family: 'Open Sans', sans-serif;
@@ -904,7 +903,6 @@ font-family: 'Open Sans', sans-serif;
 	outline:none;
 	font-size:13px;
 	color: #777;
-	 background: url(../images/arrow1.png) no-repeat 93% center #ffffff;
 	width:100%;
 	    padding: 12px 8px;
 
@@ -933,7 +931,6 @@ select {
     outline: none;
     font-size: 15px;
     color: #777;
-    background: url(../images/arrow1.png) no-repeat 97% center #ffffff;
     width: 99%;
     padding: 11px 45px 12px 20px;
     color: #777!important;
@@ -1369,7 +1366,6 @@ select#country3{
     padding: 8px 0 8px 10px;
     outline: none;
     border: 1px solid #e6e6e6;
-    background: url(../images/arrow1.png) no-repeat 91% center #ffffff;
     -webkit-appearance: none;
     float: left;
        width: 45%;
@@ -1773,7 +1769,6 @@ select.month{
 	outline: none;
     font-size: 15px;
     color: #777;
-    background: url(../images/arrow1.png) no-repeat 97% center #ffffff;
     width: 100%;
     padding: 11px 45px 12px 20px;
     color: #777!important;
@@ -1787,7 +1782,6 @@ select.year{
 	outline: none;
     font-size: 15px;
     color: #777;
-    background: url(../images/arrow1.png) no-repeat 97% center #ffffff;
    width: 100%;
     padding: 11px 45px 12px 20px;
     color: #777!important;
