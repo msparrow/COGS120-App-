@@ -127,7 +127,7 @@ function initMap() {
         var warrLatLng = {lat:32.8812 , lng:-117.2341 };
         var sixLatLng = {lat: 32.8782, lng:-117.2318 };
         addtrack.type = 'submit';
-        addtrack.value = 'Add a Tracker';
+        addtrack.value = 'Go to Trackers';
         addarea.appendChild(addtrack);
           
         var campusCoords = {
